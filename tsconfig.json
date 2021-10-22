@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"allowSyntheticDefaultImports": false,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@comp/*": ["src/vue/components*"],
+			"@pages/*": ["src/vue/pages*"],
+			"@utils/*": ["src/vue/utils*"],
+			"@layout/*": ["src/vue/layout*"]
+		}
+	},
+	"exclude": ["node_modules", "dist", "frontend-dist"]
+}
