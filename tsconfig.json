@@ -9,7 +9,8 @@
 			"@comp/*": ["src/vue/components*"],
 			"@pages/*": ["src/vue/pages*"],
 			"@utils/*": ["src/vue/utils*"],
-			"@layout/*": ["src/vue/layout*"]
+			"@layout/*": ["src/vue/layout*"],
+			"@scss/*": ["src/scss/*"]
 		}
 	},
 	"exclude": ["node_modules", "dist", "frontend-dist"]

@@ -1,0 +1,12 @@
+body {
+	min-height: 100vh;
+}
+
+#app {
+	@include flex(flex-start, stretch, column);
+	height: 100vh;
+}
+
+main {
+	flex-grow: 1;
+}

@@ -1,15 +1,14 @@
 <template>
-	<div id="app">
-		<BaseLayout />
-	</div>
+	<BaseLayout />
 </template>
-
-<style lang="scss"></style>
 
 <script>
 	import BaseLayout from "@layout/BaseLayout.vue";
+	import "@scss/index.scss";
 
 	export default {
 		components: {BaseLayout},
 	};
 </script>
+
+<style lang="scss"></style>

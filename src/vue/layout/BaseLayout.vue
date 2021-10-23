@@ -1,16 +1,16 @@
 <template>
-	<div>
-		<header>header</header>
+	<div id="app">
+		<!--<header>header</header>-->
 		<main>
 			<AuthPage></AuthPage>
 		</main>
 
-		<footer>footer</footer>
+		<!--<footer>footer</footer>-->
 	</div>
 </template>
 
 <script>
-	import AuthPage from "@pages/AuthPage.vue";
+	import AuthPage from "@pages/auth/AuthPage.vue";
 
 	export default {
 		components: {AuthPage},
