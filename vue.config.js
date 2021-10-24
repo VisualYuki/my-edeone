@@ -1,4 +1,5 @@
 const path = require("path");
+const globImporter = require("node-sass-glob-importer");
 
 module.exports = {
 	//runtimeCompiler: true,
@@ -12,6 +13,15 @@ module.exports = {
 				"@pages": path.resolve(__dirname, "src/vue/pages"),
 				"@layout": path.resolve(__dirname, "src/vue/layout"),
 				"@scss": path.resolve(__dirname, "src/scss"),
+			},
+		},
+	},
+	css: {
+		loaderOptions: {
+			scss: {
+				sassOptions: {
+					importer: globImporter(),
+				},
 			},
 		},
 	},
