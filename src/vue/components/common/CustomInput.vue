@@ -26,14 +26,14 @@
 	.custom-input {
 		input {
 			width: 100%;
-			padding: 0.75rem 1.3rem;
-
-			font-size: 1rem;
+			@include indent-2(padding, 15, 10, 20, 15);
+			font-size: adaptiveSize(15, 11);
 			color: #495057;
+			color: red;
 			line-height: 1.5;
 
 			border: 1px solid #c8d2de;
-			border-radius: 0.3rem;
+			border-radius: 5px;
 
 			&::placeholder {
 				color: gray;

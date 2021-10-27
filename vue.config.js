@@ -22,6 +22,7 @@ module.exports = {
 				sassOptions: {
 					importer: globImporter(),
 				},
+				additionalData: "@import '@/scss/utils/mixins.scss'; @import '@/scss/common/colors.scss';",
 			},
 		},
 	},

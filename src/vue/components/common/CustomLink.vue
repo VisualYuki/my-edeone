@@ -10,4 +10,9 @@
 	};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+	.custom-link {
+		font-size: adaptiveSize(13, 12);
+		color: $primary;
+	}
+</style>

@@ -1,5 +1,3 @@
-@use "sass:math";
-
 @mixin flex($justify-content: flex-start, $align-item: center, $flex-direction: row) {
 	display: flex;
 	flex-direction: $flex-direction;
@@ -11,7 +9,7 @@ $MaxWidthWindow: 1920;
 $MinWidthWindow: 320;
 
 @function adaptiveSize($NumMax, $NumMin, $WidthMax: $MaxWidthWindow, $WidthMin: $MinWidthWindow) {
-	$k: math.div(($NumMax - $NumMin), ($WidthMax - $WidthMin));
+	$k: ($NumMax - $NumMin)/ ($WidthMax - $WidthMin);
 	$b: ($NumMin - ($k * $WidthMin)) * 1px;
 
 	@return calc(#{$k} * 100vw + #{$b});
