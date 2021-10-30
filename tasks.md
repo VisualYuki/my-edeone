@@ -1,1 +1,1 @@
-Добавить stylelint, eslint, babel.
+Добавить eslint, babel.

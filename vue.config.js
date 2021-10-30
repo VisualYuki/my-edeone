@@ -4,6 +4,7 @@ const globImporter = require("node-sass-glob-importer");
 module.exports = {
 	//runtimeCompiler: true,
 	//transpileDependencies: ["vuetify"],
+	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
 	configureWebpack: {
 		resolve: {
 			alias: {

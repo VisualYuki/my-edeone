@@ -1,20 +1,20 @@
 <template>
-	<div class="custom-input mb-3">
+	<div class="Site-input mb-3">
 		<b-form-input :placeholder="placeholder" :type="type"></b-form-input>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: "CustomInput",
+		name: "SiteInput",
 		props: {
 			type: {
-				default: "text",
 				type: String,
+				default: "text",
 			},
 			placeholder: {
-				default: "",
 				type: String,
+				default: "",
 			},
 		},
 	};
@@ -23,7 +23,7 @@
 <style lang="scss">
 	@import "@/scss/common/colors.scss";
 
-	.custom-input {
+	.Site-input {
 		input {
 			width: 100%;
 			@include indent-2(padding, 15, 10, 20, 15);

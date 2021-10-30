@@ -1,41 +1,41 @@
 <template>
 	<div class="auth-page component">
 		<b-form class="auth-page__form mx-auto">
-			<img src="/img/logo/auth.png" class="mx-auto mb-3" />
-			<p class="text-center mb-5 font-weight-bold auth-page__title">Вход для преподавателя</p>
-			<CustomInput type="email" placeholder="Email"> </CustomInput>
-			<CustomInput type="password" placeholder="Пароль"> </CustomInput>
-			<div class="d-flex justify-content-between mb-3">
-				<CustomLink>Забыли пароль?</CustomLink>
-				<CustomLink>Регистрация?</CustomLink>
-			</div>
+			<SiteCard padding="lg">
+				<img src="/img/logo/auth.png" class="mx-auto mb-3" />
 
-			<CustomButton> Войти </CustomButton>
-			<CustomButton> Войти через ВК </CustomButton>
-			<CustomButton> Я ученик </CustomButton>
+				<SiteTitle align="center" class="mb-md-5 mb-3" tag="h1" size="h2">Вход для преподавателя</SiteTitle>
+
+				<SiteInputText type="email" placeholder="Email"> </SiteInputText>
+				<SiteInputText type="password" placeholder="Пароль"> </SiteInputText>
+
+				<div class="d-flex justify-content-between mb-3">
+					<CustomLink>Забыли пароль?</CustomLink>
+					<CustomLink>Регистрация?</CustomLink>
+				</div>
+
+				<CustomButton> Войти </CustomButton>
+				<CustomButton> Войти через ВК </CustomButton>
+				<CustomButton> Я ученик </CustomButton>
+			</SiteCard>
 		</b-form>
 	</div>
 </template>
 
 <script>
+	import SiteTitle from "../../components/common/SiteTitle.vue";
+	import SiteCard from "../../components/common/SiteWhiteBlock.vue";
 	import CustomLink from "@comp/common/CustomLink.vue";
 	import CustomButton from "@comp/common/CustomButton.vue";
-	import CustomInput from "@comp/common/CustomInput.vue";
+	import SiteInputText from "@comp/common/SiteInputText.vue";
 
 	export default {
-		components: {CustomInput, CustomButton, CustomLink},
+		components: {SiteInputText, CustomButton, CustomLink, SiteCard, SiteTitle},
 		name: "AuthPage",
 	};
 </script>
 
 <style lang="scss" scoped>
-	@function adaptiveSize($NumMax, $NumMin, $WidthMax: $MaxWidthWindow, $WidthMin: $MinWidthWindow) {
-		$k: ($NumMax - $NumMin)/ ($WidthMax - $WidthMin);
-		$b: ($NumMin - ($k * $WidthMin)) * 1px;
-
-		@return calc(#{$k} * 100vw + #{$b});
-	}
-
 	.auth-page {
 		height: 100%;
 		padding: 0 10px;
@@ -45,13 +45,6 @@
 
 		&__form {
 			max-width: 450px;
-			@include indent-2(padding, 60, 20, 60, 20);
-
-			background: white;
-		}
-
-		&__title {
-			font-size: 1.5rem;
 		}
 	}
 </style>
