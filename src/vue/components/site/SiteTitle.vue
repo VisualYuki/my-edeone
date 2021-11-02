@@ -1,5 +1,5 @@
 <script>
-	import {helpValidateProp} from "@/vue/utils/helpValidateProp.js";
+	import {validateProp} from "@/vue/utils/validateProp.js";
 
 	export default {
 		name: "SiteTitle",
@@ -18,7 +18,7 @@
 				default: "left",
 				required: false,
 				validator: (value) => {
-					return helpValidateProp(value, ["left", "center", "right"]);
+					return validateProp(value, ["left", "center", "right"]);
 				},
 			},
 			tag: {
@@ -29,7 +29,7 @@
 				type: String,
 				required: true,
 				validator: (value) => {
-					return helpValidateProp(value, ["h1", "h2", "h3", "h4", "h5", "h6"]);
+					return validateProp(value, ["h1", "h2", "h3", "h4", "h5", "h6"]);
 				},
 			},
 		},

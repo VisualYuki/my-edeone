@@ -1,20 +1,31 @@
 <template>
-	<div class="Site-input mb-3">
-		<b-form-input :placeholder="placeholder" :type="type"></b-form-input>
+	<div class="site-input Input mb-3">
+		<b-form-input :placeholder="placeholder" :type="type" :size="size"></b-form-input>
 	</div>
 </template>
 
 <script>
+	import {validateProp} from "@/vue/utils/validateProp.js";
+
 	export default {
-		name: "SiteInput",
+		name: "SiteFormInput",
 		props: {
 			type: {
 				type: String,
 				default: "text",
+				required: true,
 			},
 			placeholder: {
 				type: String,
 				default: "",
+			},
+			size: {
+				type: String,
+				default: "md",
+				required: false,
+				validator: (value) => {
+					return validateProp(value, ["sm", "md", "lg"]);
+				},
 			},
 		},
 	};
@@ -23,7 +34,7 @@
 <style lang="scss">
 	@import "@/scss/common/colors.scss";
 
-	.Site-input {
+	.site-input {
 		input {
 			width: 100%;
 			@include indent-2(padding, 15, 10, 20, 15);

@@ -5,9 +5,11 @@
 </template>
 
 <script>
-	export default {
-		name: "CustomButton",
+	let SiteButton = {
+		name: "SiteButton",
 	};
+
+	export default SiteButton;
 </script>
 
 <style lang="scss">

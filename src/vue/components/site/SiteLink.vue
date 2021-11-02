@@ -1,18 +1,18 @@
 <template>
-	<b-link class="custom-link">
-		<slot></slot>
+	<b-link class="site-link">
+		<slot> a </slot>
 	</b-link>
 </template>
 
 <script>
 	export default {
-		name: "CustomLink",
+		name: "SiteLink",
 	};
 </script>
 
 <style lang="scss">
-	.custom-link {
-		font-size: adaptiveSize(13, 12);
+	.site-link {
+		font-size: adaptiveSize(14, 12);
 		color: $primary;
 	}
 </style>
