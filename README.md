@@ -1,6 +1,6 @@
 # my-edeone
 
-## Project setup
+## Project setup 
 
 ```
 npm install
