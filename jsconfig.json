@@ -6,10 +6,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],
-			"@comp/*": ["src/vue/components*"],
-			"@pages/*": ["src/vue/pages*"],
-			"@utils/*": ["src/vue/utils*"],
-			"@layout/*": ["src/vue/layout*"],
+			"@comp/*": ["src/vue/components/*"],
+			"@pages/*": ["src/vue/pages/*"],
+			"@utils/*": ["src/vue/utils/*"],
+			"@layout/*": ["src/vue/layout/*"],
 			"@scss/*": ["src/scss/*"],
 			"@vue/*": ["src/vue/*"]
 		}

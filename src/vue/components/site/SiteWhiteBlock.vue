@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import {helpValidateProp} from "@/vue/utils/helpValidateProp.js";
+	import {validateProp} from "@/vue/utils/validateProp.js";
 
 	export default {
 		name: "SiteWhiteBlock",
@@ -15,7 +15,7 @@
 				default: "md",
 				required: false,
 				validator: (value) => {
-					return helpValidateProp(value, ["sm", "md", "lg"]);
+					return validateProp(value, ["sm", "md", "lg"]);
 				},
 			},
 		},

@@ -1,10 +1,10 @@
 <template>
 	<div class="auth-page component">
 		<b-form class="auth-page__form mx-auto">
-			<SiteCard padding="lg">
+			<SiteWhiteBlock padding="lg">
 				<img src="/img/logo/auth.png" class="mx-auto mb-3" />
 
-				<SiteTitle align="center" class="mb-md-5 mb-3" tag="h1" size="h2">Вход для преподавателя</SiteTitle>
+				<SiteTitle align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> Вход для преподавателя </SiteTitle>
 
 				<SiteInputEmail
 					placeholder="Email"
