@@ -6,15 +6,14 @@
 
 				<SiteTitle align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> Вход для преподавателя </SiteTitle>
 
-				<SiteInputEmail
+				<!--<SiteInputEmail
 					placeholder="Email"
 					errorMessage="Некорректный email"
 					@updateEmailValidationState="updateEmailValidationState"
-					:forceValidation="forceValidation"
 				>
-				</SiteInputEmail>
-				<!--
-				<SiteInputText
+				</SiteInputEmail>-->
+
+				<!--<SiteInputText
 					type="password"
 					placeholder="Пароль"
 					errorMessage="Неверный пароль"
@@ -23,8 +22,8 @@
 				</SiteInputText>-->
 
 				<div class="d-flex justify-content-between mb-3">
-					<CustomLink>Забыли пароль?</CustomLink>
-					<CustomLink>Регистрация</CustomLink>
+					<SiteLink>Забыли пароль?</SiteLink>
+					<SiteLink>Регистрация</SiteLink>
 				</div>
 
 				<SiteButton size="md" @click="btnClick" @blur="btnClick"> Войти </SiteButton>
@@ -36,15 +35,15 @@
 </template>
 
 <script>
-	import SiteTitle from "../../components/common/SiteTitle.vue";
-	import SiteCard from "../../components/common/SiteWhiteBlock.vue";
-	import CustomLink from "@comp/common/CustomLink.vue";
-	import CustomButton from "@comp/common/CustomButton.vue";
-	import SiteInputEmail from "@comp/common/SiteInputEmail.vue";
+	import SiteTitle from "@comp/site/SiteTitle.vue";
+	import SiteWhiteBlock from "@comp/site/SiteWhiteBlock.vue";
+	import SiteLink from "@comp/site/SiteLink.vue";
+	import SiteButton from "@comp/site/SiteButton.vue";
+	import SiteInputEmail from "@comp/site/SiteInputEmail.vue";
 
 	export default {
 		name: "AuthPage",
-		components: {SiteInputLogin, SiteButton, SiteLink, SiteWhiteBlock, SiteTitle},
+		components: {SiteInputEmail, SiteButton, SiteLink, SiteWhiteBlock, SiteTitle},
 		methods: {
 			btnClick() {
 				console.log("in btnClick!");
