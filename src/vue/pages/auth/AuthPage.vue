@@ -27,12 +27,10 @@
 					<CustomLink>Регистрация</CustomLink>
 				</div>
 
-				<b-button @click="click">Войти</b-button>
-
-				<!--<CustomButton>Войти</CustomButton>
-				<CustomButton>Войти через ВК</CustomButton>
-				<CustomButton>Я ученик</CustomButton>-->
-			</SiteCard>
+				<SiteButton size="md" @click="btnClick" @blur="btnClick"> Войти </SiteButton>
+				<SiteButton size="md"> Войти через ВК </SiteButton>
+				<SiteButton size="md"> Я ученик </SiteButton>
+			</SiteWhiteBlock>
 		</b-form>
 	</div>
 </template>
@@ -46,24 +44,10 @@
 
 	export default {
 		name: "AuthPage",
-		components: {SiteInputEmail, CustomButton, CustomLink, SiteCard, SiteTitle},
-		data() {
-			return {
-				isValidEmail: null,
-				emailValue: undefined,
-				forceValidation: false,
-			};
-		},
+		components: {SiteInputLogin, SiteButton, SiteLink, SiteWhiteBlock, SiteTitle},
 		methods: {
-			click() {
-				this.forceValidation = true;
-				debugger;
-				//this.$forceUpdate();
-
-				//this.forceValidation = false;
-			},
-			updateEmailValidationState(isInvalid) {
-				this.isValidEmail = !isInvalid;
+			btnClick() {
+				console.log("in btnClick!");
 			},
 		},
 	};
