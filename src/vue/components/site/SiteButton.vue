@@ -1,5 +1,12 @@
 <template>
-	<b-button class="custom-button" :variant="variant" :size="size" @click="click" @abort="abort">
+	<b-button
+		class="site-button"
+		:class="{'p-2': size === 'md', 'p-1': size === 'sm', 'p-3': size === 'lg'}"
+		:variant="variant"
+		:size="size"
+		:block="block"
+		@click="$emit('click')"
+	>
 		<slot name="default"></slot>
 	</b-button>
 </template>
@@ -24,20 +31,30 @@
 					return validateProp(value, ["primary", "outline-primary"]);
 				},
 			},
-		},
-		methods: {
-			click() {
-				this.$emit("click");
-			},
-			abort() {
-				this.$emit("abort");
+			block: {
+				type: Boolean,
+				default: true,
 			},
 		},
+		methods: {},
 	};
 </script>
 
 <style lang="scss">
 	.btn {
-		display: block;
+		&:focus {
+			box-shadow: none !important;
+		}
+
+		&-sm {
+			font-size: adaptiveSize(13, 10);
+		}
+
+		&-md {
+			font-size: adaptiveSize(16, 13) !important;
+		}
+
+		&-lg {
+		}
 	}
 </style>

@@ -37,7 +37,7 @@
 		}
 
 		&_lg {
-			@include indent-2(padding, 60, 20, 60, 20);
+			@include indent-2(padding, 80, 20, 80, 20);
 		}
 	}
 </style>

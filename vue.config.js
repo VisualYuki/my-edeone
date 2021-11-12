@@ -6,6 +6,9 @@ module.exports = {
 	//transpileDependencies: ["vuetify"],
 	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
 	configureWebpack: {
+		devServer: {
+			port: "3456",
+		},
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "src"),
