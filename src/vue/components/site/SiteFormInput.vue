@@ -1,6 +1,13 @@
 <template>
 	<div class="site-input Input mb-3">
-		<b-form-input :placeholder="placeholder" :type="type" :size="size"></b-form-input>
+		<b-form-input
+			:placeholder="placeholder"
+			v-model="value"
+			:state="state"
+			:type="type"
+			:size="size"
+			lazy
+		></b-form-input>
 	</div>
 </template>
 
@@ -13,11 +20,11 @@
 			type: {
 				type: String,
 				default: "text",
-				required: true,
+				required: false,
 			},
 			placeholder: {
 				type: String,
-				default: "",
+				default: "Почта",
 			},
 			size: {
 				type: String,
@@ -27,12 +34,29 @@
 					return validateProp(value, ["sm", "md", "lg"]);
 				},
 			},
+			value: {
+				type: String,
+				required: true,
+			},
+			state: {
+				type: Boolean,
+				default: null,
+			},
+		},
+		watch: {
+			value() {
+				this.$emit("input", value);
+			},
 		},
 	};
 </script>
 
 <style lang="scss">
-	@import "@/scss/common/colors.scss";
+	.form-control {
+		&:focus {
+			box-shadow: none !important;
+		}
+	}
 
 	.site-input {
 		input {

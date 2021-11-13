@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 //import vuetify from "./plugins/vuetify";
 import "./plugins/bootstrapVue.js";
+import "./plugins/fontAwesome.js";
 
 Vue.config.productionTip = false;
 
@@ -14,7 +15,7 @@ new Vue({
 	render: (h) => h(App),
 }).$mount("#app");
 
-// Убрать ошибки в консоли, после webpack hot reload
+// Убрать ошибки в консоли браузера, после webpack hot reload
 if (module.hot) {
 	module.hot.accept();
 

@@ -21,11 +21,14 @@ module.exports = {
 		},
 	},
 	css: {
+		sourceMap: process.env.NODE_ENV === "development",
 		loaderOptions: {
 			scss: {
 				sassOptions: {
+					// нужен для глобального импорта стилей в scss (e.g. /assets/scss/utils/*.scss)
 					importer: globImporter(),
 				},
+				// импорт стилей в каждый vue компонент.
 				additionalData: "@import '@/scss/utils/mixins.scss'; @import '@/scss/common/colors.scss';",
 			},
 		},

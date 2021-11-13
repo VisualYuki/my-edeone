@@ -1,11 +1,13 @@
 import Vue from "vue";
-import {BButton, BFormInput, BForm, BLink, BFormGroup, BFormInvalidFeedback} from "bootstrap-vue";
 
+/* ----------- ICONS ----------- */
 import {BIcon, BIconArrowUp, BIconArrowDown} from "bootstrap-vue";
-
 Vue.component("BIcon", BIcon);
 Vue.component("BIconArrowUp", BIconArrowUp);
 Vue.component("BIconArrowDown", BIconArrowDown);
+
+/* ----------- COMPONENTS ----------- */
+import {BButton, BFormInput, BForm, BLink, BFormGroup, BFormInvalidFeedback} from "bootstrap-vue";
 
 Vue.component("BButton", BButton);
 Vue.component("BFormInput", BFormInput);
