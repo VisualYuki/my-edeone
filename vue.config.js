@@ -1,14 +1,21 @@
 const path = require("path");
 const globImporter = require("node-sass-glob-importer");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
+function getPlugins() {
+	return process.env.NODE_ENV === "production"
+		? [
+				new BundleAnalyzerPlugin({
+					openAnalyzer: true,
+				}),
+		  ]
+		: [];
+}
 
 module.exports = {
 	//runtimeCompiler: true,
 	//transpileDependencies: ["vuetify"],
-	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
 	configureWebpack: {
-		devServer: {
-			port: "3456",
-		},
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "src"),
@@ -17,9 +24,16 @@ module.exports = {
 				"@pages": path.resolve(__dirname, "src/vue/pages"),
 				"@layout": path.resolve(__dirname, "src/vue/layout"),
 				"@scss": path.resolve(__dirname, "src/scss"),
+				"@vue": path.resolve(__dirname, "src/vue"),
 			},
 		},
+		plugins: getPlugins(),
 	},
+	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
+	devServer: {
+		port: "3456",
+	},
+	productionSourceMap: false,
 	css: {
 		sourceMap: process.env.NODE_ENV === "development",
 		loaderOptions: {

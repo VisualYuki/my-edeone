@@ -2,12 +2,13 @@
 	<div class="site-input Input mb-3">
 		<b-form-input
 			:placeholder="placeholder"
-			v-model="value"
+			v-model="componentValue"
 			:state="state"
 			:type="type"
 			:size="size"
 			lazy
 		></b-form-input>
+		<b-form-invalid-feedback>{{ "Ошибка. " + this.errorMessage }}</b-form-invalid-feedback>
 	</div>
 </template>
 
@@ -28,7 +29,7 @@
 			},
 			size: {
 				type: String,
-				default: "md",
+				default: "lg",
 				required: false,
 				validator: (value) => {
 					return validateProp(value, ["sm", "md", "lg"]);
@@ -42,10 +43,19 @@
 				type: Boolean,
 				default: null,
 			},
+			errorMessage: {
+				type: String,
+				default: "",
+			},
+		},
+		data() {
+			return {
+				componentValue: this.value,
+			};
 		},
 		watch: {
-			value() {
-				this.$emit("input", value);
+			componentValue(value) {
+				this.$emit("input", this.componentValue);
 			},
 		},
 	};
@@ -61,10 +71,11 @@
 	.site-input {
 		input {
 			width: 100%;
+			height: 45px;
 			@include indent-2(padding, 15, 10, 20, 15);
+
 			font-size: adaptiveSize(15, 11);
 			color: #495057;
-			color: red;
 			line-height: 1.5;
 
 			border: 1px solid #c8d2de;

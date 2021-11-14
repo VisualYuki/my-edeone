@@ -3,12 +3,13 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+const projectName = "MY-EDEONE";
+
 const routes = [
-	//{
-	//	path: "/",
-	//	name: "Home",
-	//	component: Home,
-	//},
+	{
+		path: "/auth/login",
+		component: () => import("@vue/pages/auth/AuthPage.vue"),
+	},
 	//{
 	//	path: "/about",
 	//	name: "About",

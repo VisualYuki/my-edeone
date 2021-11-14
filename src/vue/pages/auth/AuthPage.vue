@@ -7,22 +7,22 @@
 
 					<SiteTitle align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> Вход для преподавателя </SiteTitle>
 
-					<!--<SiteInputEmail
+					<SiteFormInput
+						type="email"
+						v-model="$v.vuelidateForm.login.$model"
+						:state="validateState('login')"
 						placeholder="Email"
-						errorMessage="Некорректный email"
-						@updateEmailValidationState="updateEmailValidationState"
+						errorMessage="Неверный формат почты."
 					>
-					</SiteInputEmail>-->
+					</SiteFormInput>
 
-					<!--<SiteFormInput
+					<SiteFormInput
 						type="password"
+						v-model="$v.vuelidateForm.password.$model"
+						:state="validateState('password')"
 						placeholder="Пароль"
-						errorMessage="Неверный пароль"
-						:forceValidation="forceValidation"
+						errorMessage="Пароль должен содержать не менее 6 символов"
 					>
-					</SiteFormInput>-->
-
-					<SiteFormInput type="email" v-model="$v.form.login.$model" :state="validateState()" placeholder="Email">
 					</SiteFormInput>
 
 					<div class="d-flex justify-content-between mb-3">
@@ -50,39 +50,21 @@
 	import SiteButton from "@comp/site/SiteButton.vue";
 	import SiteFormInput from "@/vue/components/site/SiteFormInput.vue";
 
-	import {validationMixin} from "vuelidate";
-	import {required, email} from "vuelidate/lib/validators";
+	import {vuelidate} from "@vue/mixins/vuelidate.js";
+	import {AuthApi} from "@/api/modules/auth.api.js";
 
 	export default {
 		name: "AuthPage",
+		mixins: [vuelidate],
 		components: {SiteButton, SiteLink, SiteWhiteBlock, SiteTitle, SiteFormInput},
-		mixins: [validationMixin],
-		data() {
-			return {
-				form: {
-					login: "",
-					password: "",
-				},
-			};
-		},
-		validations: {
-			form: {
-				login: {
-					required,
-					email,
-				},
-			},
-		},
+		created() {},
 		methods: {
 			btnClick() {
-				console.log("in btnClick!");
-				this.$v.form.$touch();
-			},
-			validateState() {
-				const {$dirty, $error} = this.$v.form.login;
+				this.$v.vuelidateForm.$touch();
 
-				debugger;
-				return $dirty ? !$error : null;
+				AuthApi.login("comedy951@yandex.ru", "qwe123").then((response) => {
+					debugger;
+				});
 			},
 		},
 	};
@@ -92,9 +74,7 @@
 	.narrow-content {
 		max-width: 310px;
 	}
-</style>
 
-<style lang="scss" scoped>
 	.auth-page {
 		height: 100%;
 		padding: 0 10px;
