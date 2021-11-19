@@ -2,7 +2,8 @@
 	<div id="app">
 		<!--<header>header</header>-->
 		<main>
-			<AuthPage></AuthPage>
+			baseLayout
+			<router-view></router-view>
 		</main>
 
 		<!--<footer>footer</footer>-->
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-	import AuthPage from "@pages/auth/AuthPage.vue";
+	import AuthPage from "@/vue/pages/auth/AuthPage.vue";
 
 	export default {
 		components: {AuthPage},

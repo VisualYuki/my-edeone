@@ -61,15 +61,26 @@ $MinWidthWindow: 320;
 	grid-template-columns: repeat($columnCount, minmax(0, auto));
 }
 
-//@function calcFluidFontSize($f-min, $f-max, $v-min, $v-max) {
-//	$k: math.div(($f-max - $f-min), ($v-max - $v-min));
-//	$b: $f-min - $k * $v-min;
+@mixin h1 {
+	font-size: adaptiveSize(26, 20);
+}
 
-//	$b: $b * 1px;
+@mixin h2 {
+	font-size: adaptiveSize(22, 19);
+}
 
-//	@return calc(#{$k} * 100vw + #{$b});
-//}
+@mixin h3 {
+	font-size: adaptiveSize(19, 17);
+}
 
-//.fluid-font-size {
-//	font-size: calcFluidFontSize(20, 48, 480, 1280);
-//}
+@mixin h4 {
+	font-size: adaptiveSize(15, 13);
+}
+
+@mixin h5 {
+	font-size: adaptiveSize(15, 13);
+}
+
+@mixin h6 {
+	font-size: adaptiveSize(12, 10);
+}

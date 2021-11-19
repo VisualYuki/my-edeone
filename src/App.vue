@@ -1,13 +1,13 @@
 <template>
-	<BaseLayout />
+	<router-view></router-view>
 </template>
 
 <script>
-	import BaseLayout from "@layout/BaseLayout.vue";
+	import AuthLayout from "@layout/AuthLayout.vue";
 	import "@scss/index.scss";
 
 	export default {
-		components: {BaseLayout},
+		components: {AuthLayout},
 	};
 </script>
 

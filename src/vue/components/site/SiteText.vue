@@ -2,7 +2,7 @@
 	import {validateProp} from "@/vue/utils/validateProp.js";
 
 	export default {
-		name: "SiteTitle",
+		name: "SiteText",
 		render: function (createElement) {
 			return createElement(
 				this.tag,
@@ -23,11 +23,11 @@
 			},
 			tag: {
 				type: String,
-				required: true,
+				default: "p",
 			},
 			size: {
 				type: String,
-				required: true,
+				default: "h4",
 				validator: (value) => {
 					return validateProp(value, ["h1", "h2", "h3", "h4", "h5", "h6"]);
 				},
@@ -37,36 +37,12 @@
 </script>
 
 <style lang="scss" scoped>
-	.h1,
-	.h2,
-	.h3,
-	.h4,
-	.h5,
-	.h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		font-weight: bold;
-	}
-
-	.h1 {
-		font-size: adaptiveSize(26, 20);
-	}
-
-	.h2 {
-		font-size: adaptiveSize(22, 19);
-	}
-
-	.h3 {
-		font-size: adaptiveSize(19, 17);
-	}
-
-	.h4 {
-		font-size: adaptiveSize(17, 15);
-	}
-
-	.h5 {
-		font-size: adaptiveSize(15, 12);
-	}
-
-	.h6 {
-		font-size: adaptiveSize(12, 10);
 	}
 </style>

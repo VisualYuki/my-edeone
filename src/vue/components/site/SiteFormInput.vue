@@ -1,5 +1,5 @@
 <template>
-	<div class="site-input Input mb-3">
+	<div class="site-input input mb-3">
 		<b-form-input
 			:placeholder="placeholder"
 			v-model="componentValue"
@@ -18,10 +18,13 @@
 	export default {
 		name: "SiteFormInput",
 		props: {
+			value: {
+				type: String,
+				required: true,
+			},
 			type: {
 				type: String,
 				default: "text",
-				required: false,
 			},
 			placeholder: {
 				type: String,
@@ -30,14 +33,9 @@
 			size: {
 				type: String,
 				default: "lg",
-				required: false,
 				validator: (value) => {
 					return validateProp(value, ["sm", "md", "lg"]);
 				},
-			},
-			value: {
-				type: String,
-				required: true,
 			},
 			state: {
 				type: Boolean,
@@ -74,7 +72,8 @@
 			height: 45px;
 			@include indent-2(padding, 15, 10, 20, 15);
 
-			font-size: adaptiveSize(15, 11);
+			@include h4;
+
 			color: #495057;
 			line-height: 1.5;
 

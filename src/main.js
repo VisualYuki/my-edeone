@@ -5,6 +5,7 @@ import store from "./store";
 //import vuetify from "./plugins/vuetify";
 import "./plugins/bootstrapVue.js";
 import "./plugins/fontAwesome.js";
+import "./plugins/axios.js";
 
 Vue.config.productionTip = false;
 
