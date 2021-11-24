@@ -2,8 +2,7 @@
 	<b-button
 		class="site-button"
 		:class="{'p-2 h4': size === 'md', 'p-1': size === 'sm', 'p-3': size === 'lg'}"
-		:variant="variant"
-		:block="block"
+		v-bind="$props"
 		@click="$emit('click')"
 	>
 		<b-spinner v-if="onlySpinner" variant="white" small></b-spinner>

@@ -11,7 +11,6 @@ export const routes = [
 		children: [
 			{
 				path: "login",
-
 				meta: {title: getFullTitle("Вход")},
 				component: () => import("@/vue/pages/auth/AuthPage.vue"),
 			},
@@ -39,5 +38,15 @@ export const routes = [
 				component: () => import("@vue/pages/InnerPage.vue"),
 			},
 		],
+	},
+	{
+		path: "*",
+		meta: {title: getFullTitle("Ошибка")},
+		redirect: "/error",
+	},
+	{
+		path: "/error",
+		meta: {title: getFullTitle("Ошибка")},
+		component: () => import("@vue/pages/ErrorPage.vue"),
 	},
 ];

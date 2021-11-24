@@ -2,27 +2,25 @@
 	<div>
 		<SiteText align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> </SiteText>
 
-		<b-alert variant="danger" :show="this.isAuthError">
-			<SiteText align="center" v-text="authErrorMessage"></SiteText>
-		</b-alert>
+		<BAlert variant="danger" :show="this.isAuthError">
+			<SiteText align="center"> {{ authErrorMessage }}</SiteText>
+		</BAlert>
 
 		<SiteFormInput
 			type="email"
-			v-model="$v.vuelidateForm.login.$model"
+			v-model="$v.form.login.$model"
 			:state="validateState('login')"
 			placeholder="Email"
 			errorMessage="Неверный формат почты."
-		>
-		</SiteFormInput>
+		/>
 
 		<SiteFormInput
 			type="password"
-			v-model="$v.vuelidateForm.password.$model"
+			v-model="$v.form.password.$model"
 			:state="validateState('password')"
 			placeholder="Пароль"
 			errorMessage="Пароль должен содержать не менее 6 символов"
-		>
-		</SiteFormInput>
+		/>
 
 		<div class="d-flex justify-content-between mb-3">
 			<SiteLink to="/auth/forgot-password">Забыли пароль?</SiteLink>
@@ -40,11 +38,6 @@
 </template>
 
 <script>
-	import SiteText from "@/vue/components/site/SiteText.vue";
-	import SiteLink from "@comp/site/SiteLink.vue";
-	import SiteButton from "@comp/site/SiteButton.vue";
-	import SiteFormInput from "@/vue/components/site/SiteFormInput.vue";
-
 	import {vuelidate} from "@vue/mixins/vuelidate.js";
 	import {required, email, minLength} from "vuelidate/lib/validators";
 
@@ -66,11 +59,11 @@
 	export default {
 		name: "AuthPage",
 		mixins: [vuelidate],
-		components: {SiteButton, SiteLink, SiteText, SiteFormInput},
+
 		data() {
 			return {
-				vuelidateForm: {
-					login: "comedy951@yandex.ru",
+				form: {
+					login: "comedy951@yandex.ru12",
 					password: "qwe123",
 				},
 				isAuthError: false,
@@ -79,7 +72,7 @@
 			};
 		},
 		validations: {
-			vuelidateForm: {
+			form: {
 				login: {
 					required,
 					email,
@@ -93,29 +86,26 @@
 		methods: {
 			...mapActions("auth", [LOGIN]),
 			submitForm() {
-				this.$v.vuelidateForm.$touch();
+				this.$v.form.$touch();
 				const isValidForm = !this.$v.$invalid;
 
 				if (isValidForm) {
 					this.isFetchingLoginRequest = true;
-					AuthApi.login(this.$v.vuelidateForm.login.$model, this.$v.vuelidateForm.password.$model).then(
-						(response) => {
-							// TODO: нужно ли переносить данные в vuex или оставлять их в компоненте.
-							this.authErrorMessage = "";
+					AuthApi.login(this.$v.form.login.$model, this.$v.form.password.$model).then((response) => {
+						this.authErrorMessage = "";
 
-							if (response.success) {
-								this.isAuthError = false;
+						if (response.success) {
+							this.isAuthError = false;
 
-								this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
-							} else {
-								this.authErrorMessage = getErrorMessage(response.data.errors);
+							this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
+						} else {
+							this.authErrorMessage = getErrorMessage(response.data.errors);
 
-								this.isAuthError = true;
-							}
-
-							this.isFetchingLoginRequest = false;
+							this.isAuthError = true;
 						}
-					);
+
+						this.isFetchingLoginRequest = false;
+					});
 				}
 			},
 		},

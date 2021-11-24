@@ -1,0 +1,7 @@
+@import "@/scss/utils/mixins.scss";
+@import "@/scss/common/colors.scss";
+
+// Подключить точки разрыва для стилей в компонентах
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins/breakpoints";

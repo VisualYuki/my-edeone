@@ -1,13 +1,10 @@
 <template>
-	<div class="site-input input mb-3">
-		<b-form-input
-			:placeholder="placeholder"
-			v-model="componentValue"
-			:state="state"
-			:type="type"
-			:size="size"
-			lazy
-		></b-form-input>
+	<div class="site-input input mb-3" :class="{'site-input_has-icon': icon}">
+		<div class="input-wrap">
+			<slot name="icon"> </slot>
+			<b-form-input v-model="componentValue" lazy v-bind="$props"></b-form-input>
+		</div>
+
 		<b-form-invalid-feedback>{{ "Ошибка. " + this.errorMessage }}</b-form-invalid-feedback>
 	</div>
 </template>
@@ -44,6 +41,10 @@
 			errorMessage: {
 				type: String,
 				default: "",
+			},
+			icon: {
+				type: Boolean,
+				default: false,
 			},
 		},
 		data() {
@@ -87,6 +88,26 @@
 			&:focus {
 				border-color: $primary;
 				outline: none;
+			}
+		}
+
+		&_has-icon {
+			.icon {
+				position: absolute;
+				left: 0;
+				top: 0;
+
+				width: 30px;
+
+				height: 100%;
+			}
+
+			input {
+				padding-left: 40px;
+			}
+
+			.input-wrap {
+				display: flex;
 			}
 		}
 	}

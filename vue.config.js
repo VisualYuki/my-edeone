@@ -28,6 +28,7 @@ module.exports = {
 			},
 		},
 		plugins: getPlugins(),
+		devtool: "source-map",
 	},
 	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
 	devServer: {
@@ -43,7 +44,7 @@ module.exports = {
 					importer: globImporter(),
 				},
 				// импорт стилей в каждый vue компонент.
-				additionalData: "@import '@/scss/utils/mixins.scss'; @import '@/scss/common/colors.scss';",
+				additionalData: "@import '@/scss/vueConfigImport.scss';",
 			},
 		},
 	},

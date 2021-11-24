@@ -5,7 +5,7 @@ export const vuelidate = {
 
 	methods: {
 		validateState(type) {
-			const {$dirty, $error} = this.$v.vuelidateForm[type];
+			const {$dirty, $error} = this.$v.form[type];
 
 			return $dirty ? !$error : null;
 		},

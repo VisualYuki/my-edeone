@@ -12,7 +12,7 @@ export const REMOVE_AUTH = "setAuth";
 export const IS_AUTH = "isAuth";
 
 const state = {
-	[IS_AUTH]: undefined,
+	[IS_AUTH]: !!Jwt.getAccessToken(),
 };
 
 const getters = {
@@ -22,16 +22,17 @@ const getters = {
 };
 
 const actions = {
-	[LOGIN]: ({commit}, {access_token, refresh_token, expires_in}) => {
-		Jwt.setAccessToken(access_token);
-		Jwt.setRefreshToken(refresh_token);
-		Jwt.setExpiresIn(expires_in);
-		//commit(SET_AUTH);
+	[LOGIN]: ({commit}, payback) => {
+		commit(SET_AUTH, payback);
 	},
 };
 
 const mutations = {
-	[SET_AUTH]: (state, {}) => {},
+	[SET_AUTH]: (state, {access_token, refresh_token, expires_in}) => {
+		Jwt.setAccessToken(access_token);
+		Jwt.setRefreshToken(refresh_token);
+		Jwt.setExpiresIn(expires_in);
+	},
 };
 
 export default {namespaced: true, state, actions, mutations, getters};

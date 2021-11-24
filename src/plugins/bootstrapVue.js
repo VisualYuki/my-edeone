@@ -1,10 +1,12 @@
 import Vue from "vue";
 
 /* ----------- ICONS ----------- */
-import {BIcon, BIconArrowUp, BIconArrowDown} from "bootstrap-vue";
+import {BIcon, BIconArrowUp, BIconArrowDown, BIconEyeSlash, BIconEye} from "bootstrap-vue";
 Vue.component("BIcon", BIcon);
 Vue.component("BIconArrowUp", BIconArrowUp);
 Vue.component("BIconArrowDown", BIconArrowDown);
+Vue.component("BIconEyeSlash", BIconEyeSlash);
+Vue.component("BIconEye", BIconEye);
 
 /* ----------- COMPONENTS ----------- */
 import {BButton, BFormInput, BForm, BLink, BFormGroup, BFormInvalidFeedback, BAlert, BSpinner} from "bootstrap-vue";

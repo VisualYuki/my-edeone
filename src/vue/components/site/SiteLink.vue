@@ -1,6 +1,6 @@
 <template>
-	<b-link class="site-link" :to="to">
-		<slot> a </slot>
+	<b-link class="site-link text-center" v-bind="$props" :class="{'d-block': display}">
+		<slot></slot>
 	</b-link>
 </template>
 
@@ -10,6 +10,17 @@
 		props: {
 			to: {
 				type: String,
+			},
+			//align: {
+			//	type: String,
+			//	default: "left",
+			//	validator: (value) => {
+			//		return validateProp(value, ["primary", "outline-primary"]);
+			//	},
+			//},
+			display: {
+				type: Boolean,
+				default: false,
 			},
 		},
 	};
