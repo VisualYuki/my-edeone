@@ -1,0 +1,11 @@
+.cursor-pointer {
+	cursor: pointer;
+
+	* {
+		cursor: pointer;
+	}
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+	box-shadow: none !important;
+}

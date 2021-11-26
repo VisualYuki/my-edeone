@@ -9,7 +9,17 @@ Vue.component("BIconEyeSlash", BIconEyeSlash);
 Vue.component("BIconEye", BIconEye);
 
 /* ----------- COMPONENTS ----------- */
-import {BButton, BFormInput, BForm, BLink, BFormGroup, BFormInvalidFeedback, BAlert, BSpinner} from "bootstrap-vue";
+import {
+	BButton,
+	BFormInput,
+	BForm,
+	BLink,
+	BFormGroup,
+	BFormInvalidFeedback,
+	BAlert,
+	BSpinner,
+	BFormCheckbox,
+} from "bootstrap-vue";
 
 Vue.component("BButton", BButton);
 Vue.component("BFormInput", BFormInput);
@@ -19,3 +29,4 @@ Vue.component("BForm", BForm);
 Vue.component("BLink", BLink);
 Vue.component("BAlert", BAlert);
 Vue.component("BSpinner", BSpinner);
+Vue.component("BFormCheckbox", BFormCheckbox);

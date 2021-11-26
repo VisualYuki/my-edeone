@@ -1,5 +1,6 @@
 {
 	"printWidth": 120,
 	"bracketSpacing": false,
-	"vueIndentScriptAndStyle": true
+	"vueIndentScriptAndStyle": true,
+	"quoteProps": "preserve"
 }

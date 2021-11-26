@@ -145,17 +145,10 @@ export default {
 		return axios({
 			url: url,
 			method: method,
-			params: {
-				email: data.email,
-				password: data.password,
-			},
+			params: data,
 		}).then(function (response) {
 			return response.data;
 		});
-		//.then(function (response) {
-		//	debugger;
-		//	console.log(response);
-		//});
 
 		//const responseHandler = (axiosResponse) => {
 		//	const apiResponse = axiosResponse.data;
@@ -184,17 +177,17 @@ export default {
 	//	return object;
 	//},
 
-	//get(url, query = {}, config = {}) {
-	//	return new Promise(async (resolve) => {
-	//		resolve(await this.makeRequest(REQUEST_METHOD.GET, url, query, config));
-	//	});
-	//},
+	get(url, query = {}, config = {}) {
+		return new Promise(async (resolve) => {
+			resolve(await this.makeRequest(REQUEST_METHOD.GET, url, query, config));
+		});
+	},
 
-	//post(url, data = {}, config = {}) {
-	//	return new Promise(async (resolve) => {
-	//		resolve(await this.makeRequest(REQUEST_METHOD.POST, url, data, config));
-	//	});
-	//},
+	post(url, data = {}, config = {}) {
+		return new Promise(async (resolve) => {
+			resolve(await this.makeRequest(REQUEST_METHOD.POST, url, data, config));
+		});
+	},
 
 	//patch(url, data = {}, config = {}) {
 	//	return new Promise(async (resolve) => {
@@ -202,11 +195,11 @@ export default {
 	//	});
 	//},
 
-	put(url, data = {}, config = {}) {
-		return new Promise(async (resolve) => {
-			resolve(await this.makeRequest(REQUEST_METHOD.PUT, url, data, config));
-		});
-	},
+	//put(url, data = {}, config = {}) {
+	//	return new Promise(async (resolve) => {
+	//		resolve(await this.makeRequest(REQUEST_METHOD.PUT, url, data, config));
+	//	});
+	//},
 
 	//delete(url, query = {}, config = {}) {
 	//	return new Promise(async (resolve) => {

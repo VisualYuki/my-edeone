@@ -1,10 +1,8 @@
 <template>
 	<div>
-		<SiteText align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> </SiteText>
+		<!--<SiteText align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> </SiteText>-->
 
-		<BAlert variant="danger" :show="this.isAuthError">
-			<SiteText align="center"> {{ authErrorMessage }}</SiteText>
-		</BAlert>
+		<SiteErrorAlert :show="this.isAuthError" :message="authErrorMessage" />
 
 		<SiteFormInput
 			type="email"
@@ -33,7 +31,7 @@
 			Войти через ВК
 			<FontAwesomeIcon :icon="['fab', 'vk']" size="lg" />
 		</SiteButton>
-		<SiteButton variant="outline-primary" disabled> Я ученик </SiteButton>
+		<SiteButton variant="outline-primary" href="https://store.edeone.com/"> Я ученик </SiteButton>
 	</div>
 </template>
 
@@ -46,15 +44,7 @@
 	import {mapActions, mapGetters} from "vuex";
 	import {LOGIN, IS_AUTH} from "@/store/modules/auth.store.js";
 
-	function getErrorMessage(errors) {
-		let result = "";
-
-		for (let errorText in errors) {
-			result += errors[errorText] + ".";
-		}
-
-		return result;
-	}
+	import {getErrorMessage} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "AuthPage",

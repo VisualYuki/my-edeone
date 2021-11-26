@@ -2,6 +2,7 @@
 @import "/node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+@import "./spacing.scss";
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "/node_modules/bootstrap/scss/variables";
@@ -16,6 +17,7 @@
 @import "/node_modules/bootstrap/scss/utilities/_spacing.scss";
 @import "/node_modules/bootstrap/scss/utilities/_flex.scss";
 @import "/node_modules/bootstrap/scss/utilities/_display.scss";
+@import "/node_modules/bootstrap/scss/custom-forms";
 @import "/node_modules/bootstrap/scss/forms.scss";
 @import "/node_modules/bootstrap/scss/alert.scss";
 @import "/node_modules/bootstrap/scss/spinners.scss";

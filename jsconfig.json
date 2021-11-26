@@ -3,6 +3,7 @@
 		"module": "commonjs",
 		"target": "es6",
 		"baseUrl": ".",
+		"sourceMap": true,
 		"paths": {
 			"@/*": ["src/*"],
 			"@comp/*": ["src/vue/components/*"],

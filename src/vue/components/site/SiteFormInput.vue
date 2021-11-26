@@ -1,16 +1,13 @@
 <template>
-	<div class="site-input input mb-3" :class="{'site-input_has-icon': icon}">
-		<div class="input-wrap">
-			<slot name="icon"> </slot>
-			<b-form-input v-model="componentValue" lazy v-bind="$props"></b-form-input>
-		</div>
-
-		<b-form-invalid-feedback>{{ "Ошибка. " + this.errorMessage }}</b-form-invalid-feedback>
-	</div>
+	<b-form-group class="site-input input mb-4" :class="{'site-input_has-icon': icon}">
+		<b-form-input v-model="componentValue" lazy v-bind="$props">12</b-form-input>
+		<b-form-invalid-feedback>{{ this.errorMessage }}</b-form-invalid-feedback>
+		<slot name="icon"> </slot>
+	</b-form-group>
 </template>
 
 <script>
-	import {validateProp} from "@/vue/utils/validateProp.js";
+	import {validateProp} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "SiteFormInput",
@@ -94,21 +91,31 @@
 		&_has-icon {
 			.icon {
 				position: absolute;
-				left: 0;
-				top: 0;
+				left: 1px;
+				top: 2px;
+				z-index: 1;
 
-				width: 30px;
+				@include flex(center, center);
+				width: 40px;
+				height: 40px;
 
-				height: 100%;
+				svg {
+					width: 12px;
+					overflow: visible;
+
+					* {
+						fill: #999;
+					}
+				}
 			}
 
 			input {
 				padding-left: 40px;
 			}
 
-			.input-wrap {
-				display: flex;
-			}
+			//.input-wrap {
+			//	display: flex;
+			//}
 		}
 	}
 </style>

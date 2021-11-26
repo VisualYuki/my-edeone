@@ -1,5 +1,5 @@
 <script>
-	import {validateProp} from "@/vue/utils/validateProp.js";
+	import {validateProp} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "SiteText",

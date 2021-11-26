@@ -4,6 +4,8 @@
 		:class="{'p-2 h4': size === 'md', 'p-1': size === 'sm', 'p-3': size === 'lg'}"
 		v-bind="$props"
 		@click="$emit('click')"
+		:href="href"
+		target="_blank"
 	>
 		<b-spinner v-if="onlySpinner" variant="white" small></b-spinner>
 		<slot v-else name="default"></slot>
@@ -11,7 +13,7 @@
 </template>
 
 <script>
-	import {validateProp} from "@utils/validateProp";
+	import {validateProp} from "@vue/utils/helpFunctions.js";
 
 	export default {
 		name: "SiteButton",
@@ -38,6 +40,9 @@
 				type: Boolean,
 				default: false,
 			},
+			href: {
+				type: String,
+			},
 		},
 		methods: {},
 	};
@@ -63,5 +68,11 @@
 
 		&-lg {
 		}
+	}
+</style>
+
+<style lang="scss">
+	.site-button + .site-button {
+		margin-top: $spacer-3;
 	}
 </style>
