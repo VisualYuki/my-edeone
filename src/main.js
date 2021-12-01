@@ -8,6 +8,12 @@ import "./plugins/fontAwesome.js";
 import "./plugins/axios.js";
 import "./vue/components/globalComponents";
 
+const jivosite = document.createElement("script");
+
+jivosite.async = true;
+jivosite.src = "//code.jivosite.com/widget/wXhWvcFEAc";
+document.head.appendChild(jivosite);
+
 Vue.config.productionTip = false;
 
 new Vue({

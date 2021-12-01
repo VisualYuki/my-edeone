@@ -20,27 +20,26 @@ const state = {
 	[ACCESS_TOKEN]: Jwt.getAccessToken(),
 };
 
-//const getters = {
-//	[IS_AUTH]: (state) => {
-//		return state[IS_AUTH];
-//	},
-//	[EXPIRES_IN]: (state) => {
-//		return state[EXPIRES_IN];
-//	},
-//	[REFRESH_TOKEN]: (state) => {
-//		return state[REFRESH_TOKEN];
-//	},
-//	[ACCESS_TOKEN]: (state) => {
-//		return state[ACCESS_TOKEN];
-//	},
-//};
+const getters = {
+	[IS_AUTH]: (state) => {
+		return state[IS_AUTH];
+	},
+	//[EXPIRES_IN]: (state) => {
+	//	return state[EXPIRES_IN];
+	//},
+	//[REFRESH_TOKEN]: (state) => {
+	//	return state[REFRESH_TOKEN];
+	//},
+	//[ACCESS_TOKEN]: (state) => {
+	//	return state[ACCESS_TOKEN];
+	//},
+};
 
 const actions = {
 	[LOGIN]: ({commit}, payback) => {
 		commit(SET_AUTH, payback);
 	},
 	async [VERIFY_AUTH]({commit, state}) {
-		debugger;
 		if (!state[IS_AUTH]) {
 			commit(UNSET_AUTH);
 			return false;
@@ -51,8 +50,8 @@ const actions = {
 		if (Date.now() < state[EXPIRES_IN] - TWO_MUNITS) {
 			return true;
 		}
-		debugger;
-		const response = await AuthApi.refreshToken(Jwt.getRefreshToken());
+
+		const response = await AuthApi.refreshToken();
 
 		// the refresh token requset got cancelled
 		if (response === undefined) {
@@ -67,6 +66,9 @@ const actions = {
 
 const mutations = {
 	[SET_AUTH]: (state, {access_token, refresh_token, expires_in}) => {
+		// TODO: почему нужно умножать на 1000
+		expires_in = expires_in * 1000;
+
 		state[IS_AUTH] = true;
 		state[REFRESH_TOKEN] = refresh_token;
 		state[ACCESS_TOKEN] = access_token;

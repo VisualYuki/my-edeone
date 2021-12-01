@@ -8,10 +8,6 @@
 
 	export default {
 		async mounted() {
-			const isAuth = this.$store.dispatch(`auth/verifyAuth`);
-
-			return this.$router.push({path: "/auth/login"});
-
 			//if (!isAuth) {
 			//	return this.$router.push({path: "/auth/login"});
 			//}

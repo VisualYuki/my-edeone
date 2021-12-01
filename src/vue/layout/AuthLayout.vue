@@ -20,12 +20,10 @@
 </template>
 
 <script>
-	import AuthPage from "@/vue/pages/auth/AuthPage.vue";
-	import SiteWhiteBlock from "@comp/site/SiteWhiteBlock.vue";
-	import SiteText from "@/vue/components/site/SiteText.vue";
+	import {IS_AUTH} from "@/store/modules/auth.store";
+	import {mapState} from "vuex";
 
 	export default {
-		components: {AuthPage, SiteWhiteBlock, SiteText},
 		name: "AuthLayout",
 		methods: {
 			getTitle() {
@@ -39,6 +37,16 @@
 						return "Восстановление пароля";
 				}
 			},
+		},
+		computed: {
+			...mapState("auth", [IS_AUTH]),
+		},
+		async mounted() {
+			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
+
+			if (isAuth) {
+				return this.$router.push({path: "/items"});
+			}
 		},
 	};
 </script>
