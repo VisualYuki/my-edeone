@@ -45,7 +45,7 @@
 			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
 
 			if (isAuth) {
-				return this.$router.push({path: "/items"});
+				this.$router.push("/items");
 			}
 		},
 	};

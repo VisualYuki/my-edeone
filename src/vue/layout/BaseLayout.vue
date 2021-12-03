@@ -14,21 +14,22 @@
 
 <script>
 	import AuthPage from "@/vue/pages/auth/AuthPage.vue";
-	import {UNSET_AUTH} from "@/store/modules/auth.store";
+	import {LOGOUT} from "@/store/modules/auth.store";
 
 	export default {
 		components: {AuthPage},
 		name: "BaseLayout",
 		methods: {
 			exit() {
-				this.$store.commit(`auth/${UNSET_AUTH}`);
+				this.$store.dispatch(`auth/${LOGOUT}`);
+				this.$router.push("/auth/login");
 			},
 		},
 		async mounted() {
 			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
 
 			if (!isAuth) {
-				return this.$router.push({path: "/auth/login"});
+				this.$router.push("/auth/login");
 			}
 		},
 	};

@@ -1,7 +1,5 @@
 <template>
 	<div>
-		<!--<SiteText align="center" class="mb-md-5 mb-3" tag="h1" size="h2"> </SiteText>-->
-
 		<SiteErrorAlert :show="this.isAuthError" :message="authErrorMessage" />
 
 		<SiteFormInput
@@ -53,7 +51,7 @@
 		data() {
 			return {
 				form: {
-					login: "comedy951@yandex.ru12",
+					login: "comedy951@yandex.ru",
 					password: "qwe123",
 				},
 				isAuthError: false,
@@ -81,13 +79,14 @@
 
 				if (isValidForm) {
 					this.isFetchingLoginRequest = true;
+
 					AuthApi.login(this.$v.form.login.$model, this.$v.form.password.$model).then((response) => {
 						this.authErrorMessage = "";
 
 						if (response.success) {
 							this.isAuthError = false;
-
 							this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
+							this.$router.push("/items");
 						} else {
 							this.authErrorMessage = getErrorMessage(response.data.errors);
 

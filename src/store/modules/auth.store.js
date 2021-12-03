@@ -39,9 +39,12 @@ const actions = {
 	[LOGIN]: ({commit}, payback) => {
 		commit(SET_AUTH, payback);
 	},
-	async [VERIFY_AUTH]({commit, state}) {
+	[LOGOUT]: ({commit}, payback) => {
+		commit(UNSET_AUTH);
+	},
+	async [VERIFY_AUTH]({commit, dispatch, state}) {
 		if (!state[IS_AUTH]) {
-			commit(UNSET_AUTH);
+			dispatch(LOGOUT);
 			return false;
 		}
 
@@ -58,7 +61,7 @@ const actions = {
 			return true;
 		}
 
-		response.success ? commit(SET_AUTH, response.data) : commit(UNSET_AUTH);
+		response.success ? dispatch(LOGIN, response.data) : dispatch(LOGOUT);
 
 		return response.success;
 	},
@@ -66,7 +69,6 @@ const actions = {
 
 const mutations = {
 	[SET_AUTH]: (state, {access_token, refresh_token, expires_in}) => {
-		// TODO: почему нужно умножать на 1000
 		expires_in = expires_in * 1000;
 
 		state[IS_AUTH] = true;
