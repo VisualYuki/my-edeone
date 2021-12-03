@@ -24,6 +24,11 @@ export const routes = [
 				meta: {title: getFullTitle("Восстановление пароля")},
 				component: () => import("@vue/pages/auth/ForgotPasswordPage.vue"),
 			},
+			{
+				path: "logout",
+				meta: {title: getFullTitle("Выход")},
+				component: () => import("@vue/pages/auth/LogoutPage.vue"),
+			},
 		],
 	},
 	{

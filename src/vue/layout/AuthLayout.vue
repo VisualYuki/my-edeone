@@ -62,6 +62,7 @@
 		padding-top: 100px;
 
 		background: url("/img/background/login.jpg") no-repeat center;
+		background-size: cover;
 
 		&__form {
 			max-width: 500px;

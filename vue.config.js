@@ -1,16 +1,16 @@
 const path = require("path");
 const globImporter = require("node-sass-glob-importer");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
-function getPlugins() {
-	return process.env.NODE_ENV === "production"
-		? [
-				new BundleAnalyzerPlugin({
-					openAnalyzer: true,
-				}),
-		  ]
-		: [];
-}
+//function getPlugins() {
+//	return process.env.NODE_ENV === "production"
+//		? [
+//				new BundleAnalyzerPlugin({
+//					openAnalyzer: true,
+//				}),
+//		  ]
+//		: [];
+//}
 
 module.exports = {
 	//runtimeCompiler: true,
@@ -27,7 +27,7 @@ module.exports = {
 				"@vue": path.resolve(__dirname, "src/vue"),
 			},
 		},
-		plugins: getPlugins(),
+		plugins: [],
 		devtool: "source-map",
 	},
 	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",

@@ -13,6 +13,8 @@ export const UNSET_AUTH = "unsetAuth";
 /* ------------- GETTERS/STATE ------------ */
 export const IS_AUTH = "isAuth";
 
+import {AuthApi} from "@/api/modules/auth.api.js";
+
 const state = {
 	[IS_AUTH]: !!Jwt.getAccessToken(),
 	[EXPIRES_IN]: Jwt.getExpiresIn(),
@@ -40,11 +42,13 @@ const actions = {
 		commit(SET_AUTH, payback);
 	},
 	[LOGOUT]: ({commit}, payback) => {
+		router.push("/auth/logout");
+		AuthApi.log;
 		commit(UNSET_AUTH);
 	},
 	async [VERIFY_AUTH]({commit, dispatch, state}) {
 		if (!state[IS_AUTH]) {
-			dispatch(LOGOUT);
+			commit(UNSET_AUTH);
 			return false;
 		}
 
@@ -61,7 +65,7 @@ const actions = {
 			return true;
 		}
 
-		response.success ? dispatch(LOGIN, response.data) : dispatch(LOGOUT);
+		response.success ? commit(SET_AUTH, response.data) : commit(UNSET_AUTH);
 
 		return response.success;
 	},

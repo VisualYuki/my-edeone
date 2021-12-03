@@ -21,8 +21,7 @@
 		name: "BaseLayout",
 		methods: {
 			exit() {
-				this.$store.dispatch(`auth/${LOGOUT}`);
-				this.$router.push("/auth/login");
+				//this.$router.push("/auth/login");
 			},
 		},
 		async mounted() {
