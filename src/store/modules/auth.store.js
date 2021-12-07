@@ -13,8 +13,6 @@ export const UNSET_AUTH = "unsetAuth";
 /* ------------- GETTERS/STATE ------------ */
 export const IS_AUTH = "isAuth";
 
-import {AuthApi} from "@/api/modules/auth.api.js";
-
 const state = {
 	[IS_AUTH]: !!Jwt.getAccessToken(),
 	[EXPIRES_IN]: Jwt.getExpiresIn(),
