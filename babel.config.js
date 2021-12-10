@@ -14,7 +14,13 @@ function getConfig() {
 			],
 		};
 	} else {
-		return {};
+		return {
+			"env": {
+				"test": {
+					"plugins": ["@babel/plugin-transform-modules-commonjs"], // нужен, чтобы import/export работал в jest
+				},
+			},
+		};
 	}
 }
 

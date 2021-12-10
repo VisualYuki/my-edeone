@@ -7,6 +7,7 @@ module.exports = {
 		"parser": "babel-eslint",
 	},
 	"extends": [
+		"plugin:vue/base",
 		"plugin:vue/essential",
 		"eslint:recommended",
 		"@vue/prettier",
@@ -16,14 +17,13 @@ module.exports = {
 	rules: {
 		"no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
 		"no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-		//"no-console": "warn",
-		//"no-debugger": "warn",
 		"vue/html-indent": "off",
 		"vue/max-attributes-per-line": "off",
 		"vue/singleline-html-element-content-newline": "off",
 		"vue/html-self-closing": "off",
 		"vue/require-default-prop": "off",
 		"no-async-promise-executor": "off",
+		//"vue/block-tag-newline": "error",
 	},
 
 	overrides: [

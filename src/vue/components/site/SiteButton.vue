@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	import {validateProp} from "@vue/utils/helpFunctions.js";
+	import {validateProp} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "SiteButton",

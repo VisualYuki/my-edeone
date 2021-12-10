@@ -33,7 +33,7 @@
 </template>
 
 <script>
-	import {vuelidate} from "@vue/mixins/vuelidate.js";
+	import {vuelidate} from "@/vue/mixins/vuelidate.js";
 	import {required, email, minLength} from "vuelidate/lib/validators";
 
 	import {AuthApi} from "@/api/modules/auth.api.js";
