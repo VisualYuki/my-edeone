@@ -30,11 +30,15 @@ module.exports = {
 		plugins: [],
 		devtool: "source-map",
 	},
+
 	publicPath: process.env.NODE_ENV === "production" ? "/dist" : "/",
+
 	devServer: {
 		port: "3456",
 	},
+
 	productionSourceMap: false,
+
 	css: {
 		sourceMap: process.env.NODE_ENV === "development",
 		loaderOptions: {
@@ -48,4 +52,6 @@ module.exports = {
 			},
 		},
 	},
+
+	lintOnSave: false,
 };

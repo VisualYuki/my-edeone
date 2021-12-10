@@ -1,36 +1,36 @@
 <template>
 	<div>
-		<SiteErrorAlert :show="this.errorAlert.hasRegisterError" message="fgh" />
+		<SiteErrorAlert :show="errorAlert.hasRegisterError" message="fgh" />
 
 		<div class="mb-8">
 			<SiteFormInput
 				v-model="$v.form.name.$model"
 				:state="validateState('name')"
 				placeholder="Имя"
-				errorMessage="Поле должно быть заполнено"
+				error-message="Поле должно быть заполнено"
 			/>
 
 			<SiteFormInput
-				type="email"
 				v-model="$v.form.login.$model"
+				type="email"
 				:state="validateState('login')"
 				placeholder="Email"
-				errorMessage="Неверный формат почты."
+				error-message="Неверный формат почты."
 			/>
 
 			<SiteFormInput
-				:type="showPassword ? 'text' : 'password'"
 				v-model="$v.form.password.$model"
+				:type="showPassword ? 'text' : 'password'"
 				:state="validateState('password')"
 				placeholder="Пароль"
-				errorMessage="Слишком короткий пароль"
+				error-message="Слишком короткий пароль"
 				icon
 			>
 				<template #icon>
 					<div class="icon cursor-pointer" @click="showPassword = !showPassword">
-						<b-icon-eye-slash class="hide" v-if="showPassword" scale="1.5" />
+						<b-icon-eye-slash v-if="showPassword" class="hide" scale="1.5" />
 
-						<b-icon-eye class="show" v-else scale="1.5" />
+						<b-icon-eye v-else class="show" scale="1.5" />
 					</div>
 				</template>
 			</SiteFormInput>

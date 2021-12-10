@@ -1,8 +1,8 @@
 <template>
 	<b-form-group class="site-input input mb-4" :class="{'site-input_has-icon': icon}">
 		<b-form-input v-model="componentValue" lazy v-bind="$props">12</b-form-input>
-		<b-form-invalid-feedback>{{ this.errorMessage }}</b-form-invalid-feedback>
-		<slot name="icon"> </slot>
+		<b-form-invalid-feedback>{{ errorMessage }}</b-form-invalid-feedback>
+		<slot name="icon" />
 	</b-form-group>
 </template>
 
@@ -12,14 +12,15 @@
 	export default {
 		name: "SiteFormInput",
 		props: {
-			value: {
-				type: String,
-				required: true,
-			},
 			type: {
 				type: String,
 				default: "text",
 			},
+			value: {
+				type: String,
+				required: true,
+			},
+
 			placeholder: {
 				type: String,
 				default: "Почта",
@@ -50,7 +51,7 @@
 			};
 		},
 		watch: {
-			componentValue(value) {
+			componentValue() {
 				this.$emit("input", this.componentValue);
 			},
 		},

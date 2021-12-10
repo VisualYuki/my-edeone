@@ -13,23 +13,22 @@
 </template>
 
 <script>
-	import AuthPage from "@/vue/pages/auth/AuthPage.vue";
-	import {LOGOUT} from "@/store/modules/auth.store";
+	//import {LOGOUT} from "@/store/modules/auth.store";
 
 	export default {
-		components: {AuthPage},
 		name: "BaseLayout",
-		methods: {
-			exit() {
-				//this.$router.push("/auth/login");
-			},
-		},
+
 		async mounted() {
 			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
 
 			if (!isAuth) {
 				this.$router.push("/auth/login");
 			}
+		},
+		methods: {
+			exit() {
+				//this.$router.push("/auth/login");
+			},
 		},
 	};
 </script>

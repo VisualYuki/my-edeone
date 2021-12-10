@@ -3,7 +3,7 @@
 		<div class="error">
 			<div class="title">404</div>
 			<div class="message">Такой страницы не существует!</div>
-			<b-button @click="$router.push('/items')" variant="primary" class="btn"> Назад </b-button>
+			<b-button class="btn" variant="primary" @click="$router.push('/items')"> Назад </b-button>
 		</div>
 	</transition>
 </template>

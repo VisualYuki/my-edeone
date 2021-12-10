@@ -25,6 +25,16 @@
 
 	export default {
 		name: "AuthLayout",
+		computed: {
+			...mapState("auth", [IS_AUTH]),
+		},
+		async mounted() {
+			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
+
+			if (isAuth) {
+				this.$router.push("/items");
+			}
+		},
 		methods: {
 			getTitle() {
 				let currentRoute = this.$router.currentRoute.path;
@@ -37,16 +47,6 @@
 						return "Восстановление пароля";
 				}
 			},
-		},
-		computed: {
-			...mapState("auth", [IS_AUTH]),
-		},
-		async mounted() {
-			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
-
-			if (isAuth) {
-				this.$router.push("/items");
-			}
 		},
 	};
 </script>

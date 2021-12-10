@@ -1,11 +1,11 @@
 <template>
 	<b-button
+		:href="href"
 		class="site-button"
 		:class="{'p-2 h4': size === 'md', 'p-1': size === 'sm', 'p-3': size === 'lg'}"
 		v-bind="$props"
-		@click="$emit('click')"
-		:href="href"
 		target="_blank"
+		@click="$emit('click')"
 	>
 		<b-spinner v-if="onlySpinner" variant="white" small></b-spinner>
 		<slot v-else name="default"></slot>
@@ -36,7 +36,7 @@
 				type: Boolean,
 				default: true,
 			},
-			"only-spinner": {
+			onlySpinner: {
 				type: Boolean,
 				default: false,
 			},

@@ -118,7 +118,7 @@ export default {
 	//	return ["save", "toggle", "delete"].some((part) => url.includes(part));
 	//},
 
-	async makeRequest(method, url, data, config) {
+	async makeRequest(method, url, data) {
 		//		const canMakeRequest = await this.beforeRequest(url);
 
 		//if (!canMakeRequest) {

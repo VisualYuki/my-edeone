@@ -3,15 +3,6 @@
 
 	export default {
 		name: "SiteText",
-		render: function (createElement) {
-			return createElement(
-				this.tag,
-				{
-					class: [`text-${this.align}`, this.size],
-				},
-				this.$slots.default
-			);
-		},
 		props: {
 			align: {
 				type: String,
@@ -32,6 +23,15 @@
 					return validateProp(value, ["h1", "h2", "h3", "h4", "h5", "h6"]);
 				},
 			},
+		},
+		render: function (createElement) {
+			return createElement(
+				this.tag,
+				{
+					class: [`text-${this.align}`, this.size],
+				},
+				this.$slots.default
+			);
 		},
 	};
 </script>

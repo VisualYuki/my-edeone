@@ -20,31 +20,31 @@ const state = {
 	[ACCESS_TOKEN]: Jwt.getAccessToken(),
 };
 
-const getters = {
-	[IS_AUTH]: (state) => {
-		return state[IS_AUTH];
-	},
-	//[EXPIRES_IN]: (state) => {
-	//	return state[EXPIRES_IN];
-	//},
-	//[REFRESH_TOKEN]: (state) => {
-	//	return state[REFRESH_TOKEN];
-	//},
-	//[ACCESS_TOKEN]: (state) => {
-	//	return state[ACCESS_TOKEN];
-	//},
-};
+//const getters = {
+//	[IS_AUTH]: (state) => {
+//		return state[IS_AUTH];
+//	},
+//	//[EXPIRES_IN]: (state) => {
+//	//	return state[EXPIRES_IN];
+//	//},
+//	//[REFRESH_TOKEN]: (state) => {
+//	//	return state[REFRESH_TOKEN];
+//	//},
+//	//[ACCESS_TOKEN]: (state) => {
+//	//	return state[ACCESS_TOKEN];
+//	//},
+//};
 
 const actions = {
 	[LOGIN]: ({commit}, payback) => {
 		commit(SET_AUTH, payback);
 	},
-	[LOGOUT]: ({commit}, payback) => {
-		router.push("/auth/logout");
+	[LOGOUT]: ({commit}) => {
+		//router.push("/auth/logout");
 		AuthApi.log;
 		commit(UNSET_AUTH);
 	},
-	async [VERIFY_AUTH]({commit, dispatch, state}) {
+	async [VERIFY_AUTH]({commit, state}) {
 		if (!state[IS_AUTH]) {
 			commit(UNSET_AUTH);
 			return false;

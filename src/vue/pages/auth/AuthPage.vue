@@ -1,29 +1,28 @@
 <template>
 	<div>
-		<SiteErrorAlert :show="this.isAuthError" :message="authErrorMessage" />
+		<SiteErrorAlert :show="isAuthError" :message="authErrorMessage" />
 
 		<SiteFormInput
-			type="email"
 			v-model="$v.form.login.$model"
+			type="email"
 			:state="validateState('login')"
 			placeholder="Email"
-			errorMessage="Неверный формат почты."
+			error-message="Неверный формат почты."
 		/>
-
 		<SiteFormInput
-			type="password"
 			v-model="$v.form.password.$model"
+			type="password"
 			:state="validateState('password')"
 			placeholder="Пароль"
-			errorMessage="Пароль должен содержать не менее 6 символов"
+			error-message="Пароль должен содержать не менее 6 символов"
 		/>
 
 		<div class="d-flex justify-content-between mb-3">
-			<SiteLink to="/auth/forgot-password">Забыли пароль?</SiteLink>
-			<SiteLink to="/auth/registration">Регистрация</SiteLink>
+			<SiteLink to="/auth/forgot-password"> Забыли пароль? </SiteLink>
+			<SiteLink to="/auth/registration"> Регистрация </SiteLink>
 		</div>
 
-		<SiteButton @click="submitForm" :only-spinner="isFetchingLoginRequest"> Войти </SiteButton>
+		<SiteButton :only-spinner="isFetchingLoginRequest" @click="submitForm"> Войти </SiteButton>
 
 		<SiteButton disabled>
 			Войти через ВК
@@ -47,7 +46,6 @@
 	export default {
 		name: "AuthPage",
 		mixins: [vuelidate],
-
 		data() {
 			return {
 				form: {
@@ -70,6 +68,9 @@
 					minLength: minLength(6),
 				},
 			},
+		},
+		computed: {
+			...mapGetters("auth", [IS_AUTH]),
 		},
 		methods: {
 			...mapActions("auth", [LOGIN]),
@@ -97,9 +98,6 @@
 					});
 				}
 			},
-		},
-		computed: {
-			...mapGetters("auth", [IS_AUTH]),
 		},
 	};
 </script>
