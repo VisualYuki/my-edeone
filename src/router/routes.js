@@ -7,7 +7,7 @@ function getFullTitle(pageTitle) {
 export const routes = [
 	{
 		path: "/auth",
-		component: () => import("@vue/layout/AuthLayout.vue"),
+		component: () => import("@/vue/layout/AuthLayout.vue"),
 		children: [
 			{
 				path: "login",
@@ -17,17 +17,17 @@ export const routes = [
 			{
 				path: "registration",
 				meta: {title: getFullTitle("Регистрация")},
-				component: () => import("@vue/pages/auth/RegistrationPage.vue"),
+				component: () => import("@/vue/pages/auth/RegistrationPage.vue"),
 			},
 			{
 				path: "forgot-password",
 				meta: {title: getFullTitle("Восстановление пароля")},
-				component: () => import("@vue/pages/auth/ForgotPasswordPage.vue"),
+				component: () => import("@/vue/pages/auth/ForgotPasswordPage.vue"),
 			},
 			{
 				path: "logout",
 				meta: {title: getFullTitle("Выход")},
-				component: () => import("@vue/pages/auth/LogoutPage.vue"),
+				component: () => import("@/vue/pages/auth/LogoutPage.vue"),
 			},
 		],
 	},
@@ -35,12 +35,12 @@ export const routes = [
 		path: "/",
 		redirect: "/items",
 		meta: {title: projectName},
-		component: () => import("@vue/layout/BaseLayout.vue"),
+		component: () => import("@/vue/layout/BaseLayout.vue"),
 		children: [
 			{
 				path: "items",
 				meta: {title: getFullTitle("Items")},
-				component: () => import("@vue/pages/InnerPage.vue"),
+				component: () => import("@/vue/pages/InnerPage.vue"),
 			},
 		],
 	},
@@ -52,6 +52,6 @@ export const routes = [
 	{
 		path: "/error",
 		meta: {title: getFullTitle("Ошибка")},
-		component: () => import("@vue/pages/ErrorPage.vue"),
+		component: () => import("@/vue/pages/ErrorPage.vue"),
 	},
 ];

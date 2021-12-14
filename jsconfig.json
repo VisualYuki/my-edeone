@@ -5,13 +5,13 @@
 		"baseUrl": ".",
 		"sourceMap": true,
 		"paths": {
-			"@/*": ["src/*"],
-			"@comp/*": ["src/vue/components/*"],
-			"@pages/*": ["src/vue/pages/*"],
-			"@utils/*": ["src/vue/utils/*"],
-			"@layout/*": ["src/vue/layout/*"],
-			"@scss/*": ["src/scss/*"],
-			"@vue/*": ["src/vue/*"]
+			"@/*": ["src/*"]
+			//"@comp/*": ["src/vue/components/*"],
+			//"@pages/*": ["src/vue/pages/*"],
+			//"@utils/*": ["src/vue/utils/*"],
+			//"@layout/*": ["src/vue/layout/*"],
+			//"@scss/*": ["src/scss/*"],
+			//"@vue/*": ["src/vue/*"]
 		}
 	},
 	"exclude": ["node_modules", "dist", "frontend-dist"]

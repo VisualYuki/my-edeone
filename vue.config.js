@@ -19,12 +19,12 @@ module.exports = {
 		resolve: {
 			alias: {
 				"@": path.resolve(__dirname, "src"),
-				"@comp": path.resolve(__dirname, "src/vue/components"),
-				"@utils": path.resolve(__dirname, "src/vue/utils"),
-				"@pages": path.resolve(__dirname, "src/vue/pages"),
-				"@layout": path.resolve(__dirname, "src/vue/layout"),
-				"@scss": path.resolve(__dirname, "src/scss"),
-				"@vue": path.resolve(__dirname, "src/vue"),
+				//"@comp": path.resolve(__dirname, "src/vue/components"),
+				//"@utils": path.resolve(__dirname, "src/vue/utils"),
+				//"@pages": path.resolve(__dirname, "src/vue/pages"),
+				//"@layout": path.resolve(__dirname, "src/vue/layout"),
+				//"@scss": path.resolve(__dirname, "src/scss"),
+				//"@vue": path.resolve(__dirname, "src/vue"),
 			},
 		},
 		plugins: [],

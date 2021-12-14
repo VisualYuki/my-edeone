@@ -7,7 +7,6 @@ module.exports = {
 		"^.+\\.js$": "babel-jest",
 	},
 	moduleNameMapper: {
-		// Убрать все алиасы и заменить на @
 		"^@/vue/(.*)$": "<rootDir>/src/vue/$1",
 	},
 };
