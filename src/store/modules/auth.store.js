@@ -1,5 +1,6 @@
 import {ACCESS_TOKEN, EXPIRES_IN, REFRESH_TOKEN, Jwt} from "@/service/jwt.js";
 import {AuthApi} from "@/api/modules/auth.api.js";
+import router from "@/router/index.js";
 
 /* ------------- ACTIONS ------------ */
 export const LOGIN = "login";
@@ -40,8 +41,8 @@ const actions = {
 		commit(SET_AUTH, payback);
 	},
 	[LOGOUT]: ({commit}) => {
-		//router.push("/auth/logout");
-		AuthApi.log;
+		router.push("/auth/logout");
+		//AuthApi.log;
 		commit(UNSET_AUTH);
 	},
 	async [VERIFY_AUTH]({commit, state}) {

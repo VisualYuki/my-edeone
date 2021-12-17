@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	//import {LOGOUT} from "@/store/modules/auth.store";
+	import {LOGOUT} from "@/store/modules/auth.store";
 
 	export default {
 		name: "BaseLayout",
@@ -22,11 +22,12 @@
 			const isAuth = await this.$store.dispatch(`auth/verifyAuth`);
 
 			if (!isAuth) {
-				this.$router.push("/auth/login");
+				this.$store.dispatch("auth/LOGOUT");
 			}
 		},
 		methods: {
 			exit() {
+				this.$store.dispatch(`auth/${LOGOUT}`);
 				//this.$router.push("/auth/login");
 			},
 		},

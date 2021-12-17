@@ -72,6 +72,7 @@
 		computed: {
 			...mapGetters("auth", [IS_AUTH]),
 		},
+		mounted() {},
 		methods: {
 			...mapActions("auth", [LOGIN]),
 			submitForm() {

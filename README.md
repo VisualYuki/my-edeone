@@ -1,17 +1,12 @@
-- [Редактирование Readme.md (Frontend, Backend)](#редактирование-readmemd-frontend-backend)
-- [Для BACKEND разработчика](#для-backend-разработчика)
-	- [from Backend for FrontEnd (Нужно заполнить)](#from-backend-for-frontend-нужно-заполнить)
-	- [Frontend for Backend (Нужно сделать)](#frontend-for-backend-нужно-сделать)
 - [Для FRONTEND разработчика](#для-frontend-разработчика)
+	- [Требования](#требования)
 	- [FrontEnd начало работы](#frontend-начало-работы)
 	- [Плагины для VS Code](#плагины-для-vs-code)
-		- [Pug lint](#pug-lint)
-		- [Style lint](#style-lint)
 		- [Eslint](#eslint)
 		- [EditorConfig](#editorconfig)
 		- [Prettier](#prettier)
 	- [CSS сокращения](#css-сокращения)
-	- [Gulp задачи](#gulp-задачи)
+	- [Webpack задачи](#webpack-задачи)
 		- [Production mode (с оптимизицией)](#production-mode-с-оптимизицией)
 		- [Development mode (без оптимизиции + source-maps)](#development-mode-без-оптимизиции--source-maps)
 	- [Библиотеки](#библиотеки)
@@ -19,60 +14,22 @@
 	- [Особенности сайта](#особенности-сайта)
 	- [Обратная связь с Frontend разработчиком](#обратная-связь-с-frontend-разработчиком)
 
-# Редактирование Readme.md (Frontend, Backend)
-
--  Убедительная просьба следить за структурой и чистотой написанного вами текста.
--  Использовать markdown preview для отслеживания корректности вашего текста.
-
-# Для BACKEND разработчика
-
-## from Backend for FrontEnd (Нужно заполнить)
-
--  Есть ли локально сервер и где он лежит. Какой домен сайта в интернете на период натяжки и боевого развертывания.
-   > Тут пишется ответ
--  Есть ли деплой, и как он работает.
-   > Тут пишется ответ
--  Как проходит процесс от коммита изменений до появления изменений на сайте (домене, локальном сервере), т.е. что я должен сделать, чтобы правки были на сайте.
-   > Тут пишется ответ
--  Структура папок и особенно где лежит весь html код сайта Т.е. для каждой страницы указать где лежит весь html, который используется на этой странице.
-   > Пр. <br>
-   > Основной шаблон - frontend\views\layouts\main.php и подключаемые файлы в frontend\views\layouts\main\
-   > Части страниц - frontend\views\parts\
-   > Главная страница - frontend\views\site\index.php и подключаемые файлы в frontend\views\site\index\
--  Где подгружаются скрипты, стили в php
-   > Тут пишется ответ
--  Информацию для обратной связи.
-   > Тут пишется ответ
--  Что должен знать Frontend разработчик со стороны Backend'a, чтобы начать делать свою работу. (Пр. Если я запушу изменения на гит, правки появятся на сайте? Что иначе нужно делать? )
-   > Тут пишется ответ
-
-## Frontend for Backend (Нужно сделать)
-
--  Файлы с исходниками обязательно должны лежать, либо на локальном сервере, либо на хостинге. т.е. вся ветка front должна быть неделима. т.к. брать только выходную папку (frontend-dist) не нужно, так как правки вносятся через исходники (src)
--  Если путь пр. /frontend-dist/css/... не устраивает, то во всех файлах (pug,html,css,js,favicons,...) заменить /front-end/ на /нужный-путь/frontend-dist, как минимум в yii2 такой путь работает сразу.
--  Убедительная просьба. Если идет только натяжка, то если что-то непонятно, то лучше написать мне и обсудить это, либо найти компромисс вместе, так как в будущем не хочется разбираться почему верстка работает не так, как должна.<br>
-   Обратная связь: vk - https://vk.com/moshkin_denis, или telegram - @denis_moshkin
--  Когда вы переносите мою верстку из ветки front в master, то папку frontend-src коммитить не нужно, так как потом все изменения в гите будут показывать на вас. P.S. после натяжки я в любом случае буду делать правки и закомичу свои файлы.
-
 # Для FRONTEND разработчика
+
+## Требования
+
+-  node - 16 version (проверить в консоли `node -v`)
+-  npm - 8 version (проверить в консоли `npm -v`)
+-  git - для работы с gitHooks в package.json (проверить в консоли `git --version`)
 
 ## FrontEnd начало работы
 
--  Наличие установленной node.js, проверить в консоли `node -v` и `npm -v`
 -  Установить зависимости `npm i`
 -  Установить линтеры (раздел ниже для VS Code), либо установить плагины для вашей IDE.
 
 ## Плагины для VS Code
 
 -  Открыть проект в папке, где находятся такие папки, как src, gulp, dist и т.д.
-
-### Pug lint
-
--  Подключить плагин [puglint](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-puglint)
-
-### Style lint
-
--  Подключить плагин [stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
 
 ### Eslint
 
@@ -95,7 +52,7 @@
 -  m (mobile) - блок для мобилок.
 -  t (tablet) - блок для планшета.
 
-## Gulp задачи
+## Webpack задачи
 
 ### Production mode (с оптимизицией)
 
@@ -109,13 +66,7 @@
 
 ## Библиотеки
 
--  Модальные окна - fancybox (http://fancyapps.com/fancybox/3/docs) или bootstrap modal
--  Слайдер - slick-slider (https://kenwheeler.github.io/slick/) или boostrap slider
--  Шаблон ввода в input - jQuery Masked Input Plugin (https://github.com/digitalBush/jquery.maskedinput)
--  Выпадающий список - select2 (https://github.com/select2/select2)
--  Ленивая загрузки изображений - lazysizes (https://github.com/aFarkas/lazysizes)
--  Кастомный скролл - simplebar (https://github.com/Grsmto/simplebar)
--  Таймер - easytimer.js (https://github.com/albert-gonzalez/easytimer.js)
+-
 -
 
 ## Cтруктура проекта
