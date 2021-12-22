@@ -8,22 +8,27 @@ import "@/plugins/index.js";
 //const $route = {path: "/items"};
 
 describe("HelloWorld.vue", () => {
-	it("renders props.msg when passed", () => {
+	it("renders props.msg when passed", async () => {
 		const wrapper = mount(AuthPage, {
 			data() {
 				return {
 					form: {
-						login: "comedy951@yandex.12",
+						login: "comedy951@yandex.ru",
 						password: "qwerty",
 					},
+					counter: 3,
 				};
 			},
 		});
+
+		//let button = wrapper.find("#custom-button");
+
+		//await button.trigger("click");
 
 		//console.log(wrapper.vm.$route);
 		//console.log(wrapper.vm.$route);
 
 		//expect(wrapper.vm.$route.path).toBe($route.path);
-		expect(wrapper.vm.form.password).toBe("qwerty");
+		expect(wrapper.vm.counter).toBe(3);
 	});
 });
