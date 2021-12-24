@@ -5,9 +5,17 @@ export const vuelidate = {
 
 	methods: {
 		validateState(type) {
-			const {$dirty, $error} = this.$v.form[type];
+			const {$dirty, $error} = this.$v.validations[type];
 
 			return $dirty ? !$error : null;
+		},
+		submit() {
+			this.$v.validations.$touch();
+			const isValidForm = !this.$v.$invalid;
+
+			if (isValidForm) {
+				this.successSubmit();
+			}
 		},
 	},
 };

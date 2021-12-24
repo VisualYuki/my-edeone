@@ -3,14 +3,14 @@
 		<SiteErrorAlert :show="isAuthError" :message="authErrorMessage" />
 
 		<SiteFormInput
-			v-model="$v.form.login.$model"
+			v-model="$v.validations.email.$model"
 			type="email"
-			:state="validateState('login')"
+			:state="validateState('email')"
 			placeholder="Email"
 			error-message="Неверный формат почты."
 		/>
 		<SiteFormInput
-			v-model="$v.form.password.$model"
+			v-model="$v.validations.password.$model"
 			type="password"
 			:state="validateState('password')"
 			placeholder="Пароль"
@@ -22,7 +22,7 @@
 			<SiteLink to="/auth/registration"> Регистрация </SiteLink>
 		</div>
 
-		<SiteButton :only-spinner="isFetchingLoginRequest" @click="submitForm"> Войти </SiteButton>
+		<SiteButton :only-spinner="isFetchingLoginRequest" @click="submit"> Войти </SiteButton>
 
 		<SiteButton disabled>
 			Войти через ВК
@@ -35,12 +35,9 @@
 <script>
 	import {vuelidate} from "@/vue/mixins/vuelidate.js";
 	import {required, email, minLength} from "vuelidate/lib/validators";
-
 	import {AuthApi} from "@/api/modules/auth.api.js";
-
 	import {mapActions, mapGetters} from "vuex";
 	import {LOGIN, IS_AUTH} from "@/store/modules/auth.store.js";
-
 	import {getErrorMessage} from "@/vue/utils/helpFunctions.js";
 
 	export default {
@@ -48,8 +45,8 @@
 		mixins: [vuelidate],
 		data() {
 			return {
-				form: {
-					login: "comedy951@yandex.ru",
+				validations: {
+					email: "comedy951@yandex.ru",
 					password: "qwe123",
 				},
 				isAuthError: false,
@@ -58,8 +55,8 @@
 			};
 		},
 		validations: {
-			form: {
-				login: {
+			validations: {
+				email: {
 					required,
 					email,
 				},
@@ -72,32 +69,25 @@
 		computed: {
 			...mapGetters("auth", [IS_AUTH]),
 		},
-		mounted() {},
 		methods: {
 			...mapActions("auth", [LOGIN]),
-			submitForm() {
-				this.$v.form.$touch();
-				const isValidForm = !this.$v.$invalid;
+			successSubmit() {
+				this.isFetchingLoginRequest = true;
 
-				if (isValidForm) {
-					this.isFetchingLoginRequest = true;
+				AuthApi.login(this.$v.validations.email.$model, this.$v.validations.password.$model).then((response) => {
+					this.authErrorMessage = "";
 
-					AuthApi.login(this.$v.form.login.$model, this.$v.form.password.$model).then((response) => {
-						this.authErrorMessage = "";
+					if (response.success) {
+						this.isAuthError = false;
+						this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
+						this.$router.push("/items");
+					} else {
+						this.authErrorMessage = getErrorMessage(response.data.errors);
+						this.isAuthError = true;
+					}
 
-						if (response.success) {
-							this.isAuthError = false;
-							this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
-							this.$router.push("/items");
-						} else {
-							this.authErrorMessage = getErrorMessage(response.data.errors);
-
-							this.isAuthError = true;
-						}
-
-						this.isFetchingLoginRequest = false;
-					});
-				}
+					this.isFetchingLoginRequest = false;
+				});
 			},
 		},
 	};

@@ -1,25 +1,25 @@
 <template>
 	<div>
-		<SiteErrorAlert :show="errorAlert.hasRegisterError" message="fgh" />
+		<SiteErrorAlert :show="errorAlert.hasRegisterError" :message="errorAlert.errorMessage" />
 
 		<div class="mb-8">
 			<SiteFormInput
-				v-model="$v.form.name.$model"
+				v-model="$v.validations.name.$model"
 				:state="validateState('name')"
 				placeholder="Имя"
 				error-message="Поле должно быть заполнено"
 			/>
 
 			<SiteFormInput
-				v-model="$v.form.login.$model"
+				v-model="$v.validations.email.$model"
 				type="email"
-				:state="validateState('login')"
+				:state="validateState('email')"
 				placeholder="Email"
 				error-message="Неверный формат почты."
 			/>
 
 			<SiteFormInput
-				v-model="$v.form.password.$model"
+				v-model="$v.validations.password.$model"
 				:type="showPassword ? 'text' : 'password'"
 				:state="validateState('password')"
 				placeholder="Пароль"
@@ -29,7 +29,6 @@
 				<template #icon>
 					<div class="icon cursor-pointer" @click="showPassword = !showPassword">
 						<b-icon-eye-slash v-if="showPassword" class="hide" scale="1.5" />
-
 						<b-icon-eye v-else class="show" scale="1.5" />
 					</div>
 				</template>
@@ -37,17 +36,17 @@
 		</div>
 
 		<b-form-group class="cursor-pointer agree-terms mb-5">
-			<b-form-checkbox v-model="form.agreeTerms" :state="validateState('agreeTerms')">
+			<b-form-checkbox v-model="validations.agreeTerms" :state="validateState('agreeTerms')">
 				Я принимаю условия
 				<a href="https://edeone.com/docs/termsofuse.pdf" target="_blank">пользовательского соглашения</a>
 			</b-form-checkbox>
-			<p v-if="$v.form.agreeTerms.$error" class="text-danger" style="font-size: 80%">
+			<p v-if="$v.validations.agreeTerms.$error" class="text-danger" style="font-size: 80%">
 				Необходимо принять соглашение
 			</p>
 		</b-form-group>
 
 		<div class="link-wrap mb-5">
-			<SiteButton @click="register"> Регистрация </SiteButton>
+			<SiteButton @click="submit"> Регистрация </SiteButton>
 
 			<div v-if="vkLoginLink">
 				<div class="d-flex my-3 align-items-center">
@@ -70,17 +69,15 @@
 <script>
 	import {vuelidate} from "@/vue/mixins/vuelidate.js";
 	import {required, email, minLength} from "vuelidate/lib/validators";
-
 	import {AuthApi} from "@/api/modules/auth.api.js";
-
 	import {getErrorMessage} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "RegistrationPage",
 		mixins: [vuelidate],
 		validations: {
-			form: {
-				login: {
+			validations: {
+				email: {
 					required,
 					email,
 				},
@@ -100,36 +97,35 @@
 		},
 		data() {
 			return {
-				form: {
+				validations: {
 					name: "denis",
-					login: "comedy951@yandex.ru",
+					email: "comedy951@yandex.ru",
 					password: "qwe123",
 					agreeTerms: false,
 				},
-				showPassword: false,
 				errorAlert: {
 					hasRegisterError: false,
 					errorMessage: "",
 				},
+				showPassword: false,
 				vkLoginLink: "true",
 			};
 		},
 		methods: {
-			register() {
-				this.$v.$touch();
-
-				if (!this.$v.form.$invalid) {
-					AuthApi.register(this.form.name, this.form.login, this.form.password, this.form.agreeTerms).then(
-						(response) => {
-							if (!response.success) {
-								this.hasRegisterError = true;
-								this.authErrorMessage = getErrorMessage(response.data.errors);
-							} else {
-								this.$router.push("/auth/login");
-							}
-						}
-					);
-				}
+			successSubmit() {
+				AuthApi.register(
+					this.validations.name,
+					this.validations.email,
+					this.validations.password,
+					this.validations.agreeTerms
+				).then((response) => {
+					if (!response.success) {
+						this.errorAlert.hasRegisterError = true;
+						this.errorAlert.errorMessage = getErrorMessage(response.data.errors);
+					} else {
+						this.$router.push("/auth/login");
+					}
+				});
 			},
 		},
 	};
