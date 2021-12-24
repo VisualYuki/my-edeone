@@ -8,7 +8,6 @@ import "@/vue/components/globalComponents.js";
 
 Vue.config.productionTip = false;
 
-debugger;
 new Vue({
 	router,
 	store,
