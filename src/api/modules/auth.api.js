@@ -16,9 +16,8 @@ export const AuthApi = {
 	refreshToken: () => requestor.post("/auth/refresh-token", {token: Jwt.getRefreshToken()}),
 	forgotPassword: (email) =>
 		requestor.post("/auth/forgot-password", {
-			//TODO: requestor допиливать для этого метода, чтобы работало.
 			ForgotPassword: {
-				email: email,
+				email,
 			},
 		}),
 

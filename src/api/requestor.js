@@ -125,30 +125,25 @@ export default {
 		//	return undefined;
 		//}
 
-		//config.headers ||= {};
-		//config.headers.Authorization ||= `Bearer ${vueInstance.$store.getters.accessToken}`;
-		//config.headers.ProjectId ||= vueInstance.$store.getters.projectId;
+		let requestConfig = {};
+		requestConfig["url"] = url;
+		requestConfig["method"] = method.toLowerCase();
 
-		//let baseCallParams = undefined;
-		//switch (method) {
-		//	case REQUEST_METHOD.GET:
-		//	case REQUEST_METHOD.DELETE:
-		//		baseCallParams = [`${url}?${qs.stringify(data, {skipNulls: true})}`, config];
-		//		break;
-		//	default:
-		//		baseCallParams = [url, data, config];
-		//		break;
-		//}
+		//requestConfig.headers ||= {};
+		//requestConfig.headers.Authorization ||= `Bearer ${vueInstance.$store.getters.accessToken}`;
+		//requestConfig.headers.ProjectId ||= vueInstance.$store.getters.projectId;
 
-		//debugger;
-
-		return axios({
-			url: url,
-			method: method,
-			params: data,
-		}).then(function (response) {
-			return response.data;
-		});
+		switch (method) {
+			case REQUEST_METHOD.GET:
+			case REQUEST_METHOD.DELETE:
+				requestConfig["params"] = data;
+				break;
+			case REQUEST_METHOD.POST:
+			case REQUEST_METHOD.PUT:
+			case REQUEST_METHOD.PATCH:
+				requestConfig["data"] = data;
+				break;
+		}
 
 		//const responseHandler = (axiosResponse) => {
 		//	const apiResponse = axiosResponse.data;
@@ -156,30 +151,24 @@ export default {
 		//	return apiResponse;
 		//};
 
+		return axios(requestConfig).then(function (response) {
+			return response.data;
+		});
+
 		//return Vue.axios[method.toLowerCase()](...baseCallParams)
 		//	.then((axiosResponse) => responseHandler(axiosResponse))
 		//	.catch((error) => responseHandler(error.response));
 	},
 
-	//clean(object) {
-	//	Object.entries(object).forEach(([k, v]) => {
-	//		if (v && typeof v === "object") {
-	//			this.clean(v);
-	//		}
-	//		if ((v && typeof v === "object" && !Object.keys(v).length) || v === null || v === undefined) {
-	//			if (Array.isArray(object)) {
-	//				object.splice(k, 1);
-	//			} else {
-	//				delete object[k];
-	//			}
-	//		}
-	//	});
-	//	return object;
-	//},
-
 	get(url, query = {}, config = {}) {
 		return new Promise(async (resolve) => {
 			resolve(await this.makeRequest(REQUEST_METHOD.GET, url, query, config));
+		});
+	},
+
+	delete(url, query = {}, config = {}) {
+		return new Promise(async (resolve) => {
+			resolve(await this.makeRequest(REQUEST_METHOD.DELETE, url, query, config));
 		});
 	},
 
@@ -189,21 +178,15 @@ export default {
 		});
 	},
 
-	//patch(url, data = {}, config = {}) {
-	//	return new Promise(async (resolve) => {
-	//		resolve(await this.makeRequest(REQUEST_METHOD.PATCH, url, data, config));
-	//	});
-	//},
+	patch(url, data = {}, config = {}) {
+		return new Promise(async (resolve) => {
+			resolve(await this.makeRequest(REQUEST_METHOD.PATCH, url, data, config));
+		});
+	},
 
-	//put(url, data = {}, config = {}) {
-	//	return new Promise(async (resolve) => {
-	//		resolve(await this.makeRequest(REQUEST_METHOD.PUT, url, data, config));
-	//	});
-	//},
-
-	//delete(url, query = {}, config = {}) {
-	//	return new Promise(async (resolve) => {
-	//		resolve(await this.makeRequest(REQUEST_METHOD.DELETE, url, query, config));
-	//	});
-	//},
+	put(url, data = {}, config = {}) {
+		return new Promise(async (resolve) => {
+			resolve(await this.makeRequest(REQUEST_METHOD.PUT, url, data, config));
+		});
+	},
 };
