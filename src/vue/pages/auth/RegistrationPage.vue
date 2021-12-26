@@ -47,14 +47,12 @@
 
 		<div class="link-wrap mb-5">
 			<SiteButton @click="submit"> Регистрация </SiteButton>
-
 			<div v-if="vkLoginLink">
 				<div class="d-flex my-3 align-items-center">
 					<hr class="flex-grow-1" />
 					<span class="my-auto px-3">ИЛИ</span>
 					<hr class="flex-grow-1" />
 				</div>
-
 				<SiteButton disabled :href="vkLoginLink">
 					Войти через ВК
 					<FontAwesomeIcon :icon="['fab', 'vk']" size="lg" />
@@ -70,7 +68,6 @@
 	import {vuelidate} from "@/vue/mixins/vuelidate.js";
 	import {required, email, minLength} from "vuelidate/lib/validators";
 	import {AuthApi} from "@/api/modules/auth.api.js";
-	import {getErrorMessage} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "RegistrationPage",
@@ -121,7 +118,7 @@
 				).then((response) => {
 					if (!response.success) {
 						this.errorAlert.hasRegisterError = true;
-						this.errorAlert.errorMessage = getErrorMessage(response.data.errors);
+						this.errorAlert.errorMessage = response.errorMessage;
 					} else {
 						this.$router.push("/auth/login");
 					}

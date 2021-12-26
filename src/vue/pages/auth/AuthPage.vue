@@ -1,7 +1,6 @@
 <template>
 	<div>
-		<SiteErrorAlert :show="isAuthError" :message="authErrorMessage" />
-
+		<SiteErrorAlert :show="errorAlert.hasError" :message="errorAlert.errorMessage" />
 		<SiteFormInput
 			v-model="$v.validations.email.$model"
 			type="email"
@@ -16,14 +15,11 @@
 			placeholder="Пароль"
 			error-message="Пароль должен содержать не менее 6 символов"
 		/>
-
 		<div class="d-flex justify-content-between mb-3">
 			<SiteLink to="/auth/forgot-password"> Забыли пароль? </SiteLink>
 			<SiteLink to="/auth/registration"> Регистрация </SiteLink>
 		</div>
-
-		<SiteButton :only-spinner="isFetchingLoginRequest" @click="submit"> Войти </SiteButton>
-
+		<SiteButton :only-spinner="isLoading" @click="submit"> Войти </SiteButton>
 		<SiteButton disabled>
 			Войти через ВК
 			<FontAwesomeIcon :icon="['fab', 'vk']" size="lg" />
@@ -38,7 +34,6 @@
 	import {AuthApi} from "@/api/modules/auth.api.js";
 	import {mapActions, mapGetters} from "vuex";
 	import {LOGIN, IS_AUTH} from "@/store/modules/auth.store.js";
-	import {getErrorMessage} from "@/vue/utils/helpFunctions.js";
 
 	export default {
 		name: "AuthPage",
@@ -49,9 +44,12 @@
 					email: "comedy951@yandex.ru",
 					password: "qwe123",
 				},
-				isAuthError: false,
-				isFetchingLoginRequest: false,
-				authErrorMessage: "",
+				errorAlert: {
+					hasError: false,
+					errorMessage: "",
+				},
+
+				isLoading: false,
 			};
 		},
 		validations: {
@@ -72,21 +70,21 @@
 		methods: {
 			...mapActions("auth", [LOGIN]),
 			successSubmit() {
-				this.isFetchingLoginRequest = true;
+				this.isLoading = true;
 
 				AuthApi.login(this.$v.validations.email.$model, this.$v.validations.password.$model).then((response) => {
-					this.authErrorMessage = "";
+					this.errorAlert.errorMessage = "";
 
 					if (response.success) {
-						this.isAuthError = false;
+						this.errorAlert.hasError = false;
 						this.$store.dispatch(`auth/${LOGIN}`, response.data.token_group);
 						this.$router.push("/items");
 					} else {
-						this.authErrorMessage = getErrorMessage(response.data.errors);
-						this.isAuthError = true;
+						this.errorAlert.errorMessage = response.errorMessage;
+						this.errorAlert.hasError = true;
 					}
 
-					this.isFetchingLoginRequest = false;
+					this.isLoading = false;
 				});
 			},
 		},

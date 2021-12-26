@@ -32,6 +32,7 @@ export const REQUEST_METHOD = {
 	PUT: "PUT",
 };
 
+import {getErrorMessage} from "@/vue/utils/helpFunctions";
 import axios from "axios";
 
 export default {
@@ -145,15 +146,22 @@ export default {
 				break;
 		}
 
-		//const responseHandler = (axiosResponse) => {
-		//	const apiResponse = axiosResponse.data;
-		//	this.afterRequest(axiosResponse.config.url, apiResponse);
-		//	return apiResponse;
-		//};
+		const responseHandler = (response) => {
+			let responseData = response.data;
 
-		return axios(requestConfig).then(function (response) {
-			return response.data;
+			//this.afterRequest(response.config.url, apiResponse);
+
+			responseData.errorMessage = getErrorMessage(responseData.data.errors);
+			return responseData;
+		};
+
+		return axios(requestConfig).then((response) => {
+			return responseHandler(response);
 		});
+
+		//(function (response) {
+		//	return response.data;
+		//});
 
 		//return Vue.axios[method.toLowerCase()](...baseCallParams)
 		//	.then((axiosResponse) => responseHandler(axiosResponse))

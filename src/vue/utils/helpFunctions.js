@@ -10,7 +10,7 @@ export function getErrorMessage(errors) {
 	let result = "";
 
 	for (let errorText in errors) {
-		result += errors[errorText] + ".";
+		result += errors[errorText];
 	}
 
 	return result;

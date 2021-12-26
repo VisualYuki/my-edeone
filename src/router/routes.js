@@ -25,10 +25,23 @@ export const routes = [
 				component: () => import("@/vue/pages/auth/ForgotPasswordPage.vue"),
 			},
 			{
+				path: "password-recovery",
+				meta: {title: getFullTitle("Восстановление пароля")},
+				component: () => import("@/vue/pages/auth/PasswordRecovery.vue"),
+			},
+			{
 				path: "logout",
 				meta: {title: getFullTitle("Выход")},
 				component: () => import("@/vue/pages/auth/LogoutPage.vue"),
 			},
+			//{
+			//	path: "/auth/login-by-token",
+			//	meta: { title: projectName + " | Вход по ключу" },
+			//	component: () => import("shared/views/auth/LoginByToken.vue"),
+			//	props: (route) => ({
+			//	  token: route.query.hash,
+			//	}),
+			// },
 		],
 	},
 	{
