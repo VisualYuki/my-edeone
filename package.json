@@ -1,9 +1,13 @@
 {
 	"name": "my-edeone",
 	"private": true,
+	"engines": {
+		"node": ">=16"
+	},
 	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
+		"serve": "vue-cli-service serve --mode development",
+		"test-build": "vue-cli-service build --mode test",
+		"prod-build": "vue-cli-service build --mode production",
 		"test:unit": "vue-cli-service test:unit",
 		"test:e2e": "vue-cli-service test:e2e",
 		"lint": "vue-cli-service lint"
